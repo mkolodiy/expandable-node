@@ -1,0 +1,23 @@
+{
+  "container": "#container",
+  "nodes": [
+    {
+      "id": "node01",
+      "description": "Level 1 node.",
+      "childNodes": [
+        {
+          "id": "node01-childNode01",
+          "description": "Level 2 node."
+        },
+        {
+          "id": "node01-childNode02",
+          "description": "Level 2 node."
+        }
+      ]
+    },
+    {
+      "id": "node02",
+      "description": "Level 1 node."
+    }
+  ]
+}

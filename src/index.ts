@@ -1,1 +1,1 @@
-export * from './lib-example/number';
+export * from './lib/index';
