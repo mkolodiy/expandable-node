@@ -1,5 +1,6 @@
 import { Options } from './models';
 import { Errors } from './variables';
+import { ExpNodeComponent } from './exp-node-component';
 
 /**
  * Contains all variables and methods necessary for creating and managing of a expandable node.
@@ -46,8 +47,15 @@ export class ExpNode {
     wrapperEl.classList.add('.exp-node-wrapper');
     if (containerEl !== null) {
       containerEl.appendChild(wrapperEl);
+      this.renderNodes(wrapperEl);
     } else {
       throw new Error(Errors.CONTAINER_NOT_FOUND);
     }
+  }
+
+  private renderNodes(wrapperEl: Element): void {
+    this.options.nodes.forEach(node => {
+      ExpNodeComponent.create(node, wrapperEl);
+    });
   }
 }
