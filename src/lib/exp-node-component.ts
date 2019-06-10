@@ -1,4 +1,5 @@
 import { Node } from './models';
+import { Utils } from './utils';
 /**
  * Component used to render a expandable node.
  */
@@ -38,11 +39,12 @@ export class ExpNodeComponent {
    * Creates HTML structure for an expandable node and adds it to the [[containerEl]].
    */
   private render(): void {
-    // const { id } = this.node;
+    const { id } = this.node;
     const { description } = this.node;
-    // const { childNodes } = this.node;
+    const { childNodes } = this.node;
 
-    const expNodeComponent = document.createElement('div');
+    const expNodeComponent: Element = document.createElement('div');
+    expNodeComponent.id = id;
     expNodeComponent.classList.add('exp-node-container');
     expNodeComponent.innerHTML = `
     <div class="row">
@@ -59,14 +61,78 @@ export class ExpNodeComponent {
             ${description}
         </div>
       </div>
-      <div class="col s6 center-align exp-node-second-lvl-col">
-        <div class="z-depth-1 exp-node-children-actions">
-          <a class="btn-floating waves-effect waves-light exp-node-btn"><i class="material-icons">expand_more</i></a>
-        </div>
+      <div class="col s6 center-align exp-node-second-lvl-col exp-node-children-actions-wrapper">
       </div>
       <div class="col s6 exp-node-second-lvl-col exp-node-children"></div>
     </div>`;
 
+    if (childNodes.length !== 0) {
+      this.enableChildrenActions(expNodeComponent);
+      this.renderChildNodes(expNodeComponent);
+    }
+
     this.containerEl.appendChild(expNodeComponent);
+  }
+  /**
+   * Enables children actions for a given expandable node.
+   *
+   * @param expNodeComponent A expandable node which should have children actions enabled.
+   */
+  private enableChildrenActions(expNodeComponent: Element): void {
+    const childrenActionsContainerEl = expNodeComponent.querySelector(
+      '.exp-node-children-actions-wrapper'
+    );
+    if (childrenActionsContainerEl !== null) {
+      childrenActionsContainerEl.innerHTML = `<div class="z-depth-1 exp-node-children-actions">
+          <a class="btn-floating waves-effect waves-light exp-node-btn exp-node-expand-btn"><i class="material-icons">expand_less</i></a>
+        </div>`;
+      this.registerExpandBtnClickListener(expNodeComponent);
+    }
+  }
+
+  /**
+   * Renders children nodes of an expandable node.
+   *
+   * @param expNodeComponent An expandable node which children should be rendered out.
+   */
+  private renderChildNodes(expNodeComponent: Element): void {
+    const { childNodes } = this.node;
+    const childrenContainerEl = expNodeComponent.querySelector(
+      '.exp-node-children'
+    );
+    if (childrenContainerEl !== null) {
+      childNodes.forEach(childNode =>
+        ExpNodeComponent.create(childNode, childrenContainerEl)
+      );
+    }
+  }
+
+  /**
+   * Registers an event listener to the children action button to show/collapse the children nodes.
+   *
+   * @param expNodeComponent An expandable node which children should be rendered out.
+   */
+  private registerExpandBtnClickListener(expNodeComponent: Element): void {
+    const expandBtnEl = expNodeComponent.querySelector('.exp-node-expand-btn');
+    const childrenContainerEl = expNodeComponent.querySelector(
+      '.exp-node-children'
+    );
+
+    if (expandBtnEl !== null && childrenContainerEl !== null) {
+      expandBtnEl.addEventListener('click', () => {
+        childrenContainerEl.classList.toggle('exp-node-hide');
+
+        if (
+          Utils.checkIfElementContainsClassName(
+            childrenContainerEl,
+            'exp-node-hide'
+          )
+        ) {
+          expandBtnEl.innerHTML = '<i class="material-icons">expand_more</i>';
+        } else {
+          expandBtnEl.innerHTML = '<i class="material-icons">expand_less</i>';
+        }
+      });
+    }
   }
 }
