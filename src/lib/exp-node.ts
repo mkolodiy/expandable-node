@@ -1,6 +1,6 @@
+import { ExpNodeComponent } from './exp-node-component';
 import { Options } from './models';
 import { Errors } from './variables';
-import { ExpNodeComponent } from './exp-node-component';
 
 /**
  * Contains all variables and methods necessary for creating and managing of a expandable node.

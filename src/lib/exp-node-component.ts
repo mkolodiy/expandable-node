@@ -38,17 +38,34 @@ export class ExpNodeComponent {
    * Creates HTML structure for an expandable node and adds it to the [[containerEl]].
    */
   private render(): void {
-    const { id } = this.node;
+    // const { id } = this.node;
     const { description } = this.node;
-    const { childNodes } = this.node;
+    // const { childNodes } = this.node;
 
     const expNodeComponent = document.createElement('div');
     expNodeComponent.classList.add('exp-node-container');
     expNodeComponent.innerHTML = `
-      <div>Id: ${id}</div>
-      <div>Description: ${description}</div>
-      <div>ChildNodes: ${childNodes.length}</div>
-    `;
+    <div class="row">
+      <div class="col s6 exp-node-first-lvl-col">
+        <div class="exp-node-shape-selection"></div>
+        <div class="exp-node-shape"></div>
+      </div>
+      <div class="col s6 exp-node-first-lvl-col">
+        <div class="z-depth-1 exp-node-actions">
+          <a class="btn-floating waves-effect waves-light exp-node-btn"><i class="material-icons">delete</i></a>
+          <a class="btn-floating waves-effect waves-light exp-node-btn"><i class="material-icons">open_in_new</i></a>
+        </div>
+        <div class="z-depth-1 valign-wrapper exp-node-desc">
+            ${description}
+        </div>
+      </div>
+      <div class="col s6 center-align exp-node-second-lvl-col">
+        <div class="z-depth-1 exp-node-children-actions">
+          <a class="btn-floating waves-effect waves-light exp-node-btn"><i class="material-icons">expand_more</i></a>
+        </div>
+      </div>
+      <div class="col s6 exp-node-second-lvl-col exp-node-children"></div>
+    </div>`;
 
     this.containerEl.appendChild(expNodeComponent);
   }
