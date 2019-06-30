@@ -44,7 +44,7 @@ export class ExpNode {
     const { container } = this.options;
     const containerEl = document.querySelector(container);
     const wrapperEl = document.createElement('div');
-    wrapperEl.classList.add('.exp-node-wrapper');
+    wrapperEl.classList.add('exp-node-wrapper');
     if (containerEl !== null) {
       containerEl.appendChild(wrapperEl);
       this.renderNodes(wrapperEl);
@@ -54,8 +54,10 @@ export class ExpNode {
   }
 
   private renderNodes(wrapperEl: Element): void {
-    this.options.nodes.forEach(node => {
-      ExpNodeComponent.create(node, wrapperEl);
+    const { nodes } = this.options;
+    const { callbacks } = this.options;
+    nodes.forEach(node => {
+      ExpNodeComponent.create(node, wrapperEl, callbacks);
     });
   }
 }

@@ -4,4 +4,7 @@
 export class Errors {
   public static readonly CONTAINER_NOT_FOUND =
     'Could not find the container element.';
+
+  public static readonly EDIT_BTN_NOT_FOUND =
+    'Could not find the edit button element.';
 }

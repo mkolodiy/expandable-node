@@ -1,5 +1,6 @@
-import { Node } from './models';
+import { Node, NodeCallbacks } from './models';
 import { Utils } from './utils';
+import { Errors } from './variables';
 /**
  * Component used to render a expandable node.
  */
@@ -10,8 +11,12 @@ export class ExpNodeComponent {
    * @param containerEl A HTML element that should be a container for the ExpNodeComponent.
    * @param node        A node object that should be rendered in the ExpNodeComponent.
    */
-  public static create(node: Node, containerEl: Element): ExpNodeComponent {
-    return new ExpNodeComponent(node, containerEl);
+  public static create(
+    node: Node,
+    containerEl: Element,
+    callbacks: NodeCallbacks
+  ): ExpNodeComponent {
+    return new ExpNodeComponent(node, containerEl, callbacks);
   }
 
   /**
@@ -25,13 +30,19 @@ export class ExpNodeComponent {
   private readonly node: Node;
 
   /**
+   * An object containing callbacks for all buttons defines for a node.
+   */
+  private readonly callbacks: NodeCallbacks;
+
+  /**
    * Initializes [[containerEl]] variable.
    *
    * @param containerEl A HTML element that should be a container for the ExpNodeComponent.
    */
-  constructor(node: Node, containerEl: Element) {
+  constructor(node: Node, containerEl: Element, callbacks: NodeCallbacks) {
     this.containerEl = containerEl;
     this.node = node;
+    this.callbacks = callbacks;
     this.render();
   }
 
@@ -41,6 +52,7 @@ export class ExpNodeComponent {
   private render(): void {
     const { id } = this.node;
     const { description } = this.node;
+    const { enableEditBtn } = this.node;
     const { childNodes } = this.node;
 
     const expNodeComponent: Element = document.createElement('div');
@@ -54,8 +66,8 @@ export class ExpNodeComponent {
       </div>
       <div class="col s6 exp-node-first-lvl-col">
         <div class="z-depth-1 exp-node-actions">
-          <a class="btn-floating waves-effect waves-light exp-node-btn"><i class="material-icons">delete</i></a>
-          <a class="btn-floating waves-effect waves-light exp-node-btn"><i class="material-icons">open_in_new</i></a>
+          <a class="btn-floating waves-effect waves-light exp-node-btn exp-node-delete-btn"><i class="material-icons">delete</i></a>
+          <a class="btn-floating waves-effect waves-light exp-node-btn exp-node-edit-btn exp-node-hide"><i class="material-icons">open_in_new</i></a>
         </div>
         <div class="z-depth-1 valign-wrapper exp-node-desc">
             ${description}
@@ -65,6 +77,10 @@ export class ExpNodeComponent {
       </div>
       <div class="col s6 exp-node-second-lvl-col exp-node-children"></div>
     </div>`;
+
+    if (enableEditBtn) {
+      this.registerEditBtnClickListener(expNodeComponent);
+    }
 
     if (childNodes.length !== 0) {
       this.enableChildrenActions(expNodeComponent);
@@ -102,13 +118,13 @@ export class ExpNodeComponent {
     );
     if (childrenContainerEl !== null) {
       childNodes.forEach(childNode =>
-        ExpNodeComponent.create(childNode, childrenContainerEl)
+        ExpNodeComponent.create(childNode, childrenContainerEl, this.callbacks)
       );
     }
   }
 
   /**
-   * Registers an event listener to the children action button to show/collapse the children nodes.
+   * Registers an event listener for the children action button to show/collapse the children nodes.
    *
    * @param expNodeComponent An expandable node which children should be rendered out.
    */
@@ -133,6 +149,21 @@ export class ExpNodeComponent {
           expandBtnEl.innerHTML = '<i class="material-icons">expand_less</i>';
         }
       });
+    }
+  }
+
+  /**
+   * Registers an event listener and enables the edit button for a given expandable node.
+   */
+  private registerEditBtnClickListener(expNodeComponent: Element): void {
+    const { editBtnCb } = this.callbacks;
+    const editBtnEl = expNodeComponent.querySelector('.exp-node-edit-btn');
+
+    if (editBtnEl != null) {
+      editBtnEl.classList.remove('exp-node-hide');
+      editBtnEl.addEventListener('click', () => editBtnCb(this.node));
+    } else {
+      throw new Error(Errors.EDIT_BTN_NOT_FOUND);
     }
   }
 }

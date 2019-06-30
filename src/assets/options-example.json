@@ -1,23 +1,32 @@
 {
   "container": "#container",
+  "callbacks": {
+    "deleteBtnCb": "someFunction",
+    "editBtnCb": "someFunction"
+  },
   "nodes": [
     {
       "id": "node01",
       "description": "Level 1 node.",
+      "enableEditBtn": true,
       "childNodes": [
         {
           "id": "node01-childNode01",
-          "description": "Level 2 node."
+          "description": "Level 2 node.",
+          "childNodes": []
         },
         {
           "id": "node01-childNode02",
-          "description": "Level 2 node."
+          "description": "Level 2 node.",
+          "enableEditBtn": true,
+          "childNodes": []
         }
       ]
     },
     {
       "id": "node02",
-      "description": "Level 1 node."
+      "description": "Level 1 node.",
+      "childNodes": []
     }
   ]
 }
