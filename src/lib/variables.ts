@@ -7,4 +7,7 @@ export class Errors {
 
   public static readonly EDIT_BTN_NOT_FOUND =
     'Could not find the edit button element.';
+
+  public static readonly DELETE_BTN_NOT_FOUND =
+    'Could not find the delete button element.';
 }

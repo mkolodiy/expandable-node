@@ -88,6 +88,8 @@ export class ExpNodeComponent {
     }
 
     this.containerEl.appendChild(expNodeComponent);
+
+    this.registerDeleteBtnClickListener(expNodeComponent);
   }
   /**
    * Enables children actions for a given expandable node.
@@ -126,7 +128,7 @@ export class ExpNodeComponent {
   /**
    * Registers an event listener for the children action button to show/collapse the children nodes.
    *
-   * @param expNodeComponent An expandable node which children should be rendered out.
+   * @param expNodeComponent An expandable node for which the expand button should be registered.
    */
   private registerExpandBtnClickListener(expNodeComponent: Element): void {
     const expandBtnEl = expNodeComponent.querySelector('.exp-node-expand-btn');
@@ -154,6 +156,8 @@ export class ExpNodeComponent {
 
   /**
    * Registers an event listener and enables the edit button for a given expandable node.
+   *
+   * @param expNodeComponent An expandable node for which the edit button should be registered.
    */
   private registerEditBtnClickListener(expNodeComponent: Element): void {
     const { editBtnCb } = this.callbacks;
@@ -164,6 +168,26 @@ export class ExpNodeComponent {
       editBtnEl.addEventListener('click', () => editBtnCb(this.node));
     } else {
       throw new Error(Errors.EDIT_BTN_NOT_FOUND);
+    }
+  }
+
+  /**
+   * Registers an event listener and enables the edit button for a given expandable node.
+   *
+   * @param expNodeComponent An expandable node for which the edit button should be registered.
+   */
+  private registerDeleteBtnClickListener(expNodeComponent: Element): void {
+    const { deleteBtnCb } = this.callbacks;
+    const deleteBtnEl = expNodeComponent.querySelector('.exp-node-delete-btn');
+    const parentEl = (expNodeComponent as HTMLElement).parentElement;
+
+    if (deleteBtnEl != null && parentEl != null) {
+      deleteBtnEl.addEventListener('click', () => {
+        parentEl.removeChild(expNodeComponent);
+        deleteBtnCb(this.node);
+      });
+    } else {
+      throw new Error(Errors.DELETE_BTN_NOT_FOUND);
     }
   }
 }
