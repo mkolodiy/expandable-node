@@ -90,6 +90,7 @@ export class ExpNodeComponent {
     this.containerEl.appendChild(expNodeComponent);
 
     this.registerDeleteBtnClickListener(expNodeComponent);
+    this.registerSelectClickListener(expNodeComponent);
   }
   /**
    * Enables children actions for a given expandable node.
@@ -131,6 +132,7 @@ export class ExpNodeComponent {
    * @param expNodeComponent An expandable node for which the expand button should be registered.
    */
   private registerExpandBtnClickListener(expNodeComponent: Element): void {
+    const { expandBtnCb } = this.callbacks;
     const expandBtnEl = expNodeComponent.querySelector('.exp-node-expand-btn');
     const childrenContainerEl = expNodeComponent.querySelector(
       '.exp-node-children'
@@ -150,6 +152,8 @@ export class ExpNodeComponent {
         } else {
           expandBtnEl.innerHTML = '<i class="material-icons">expand_less</i>';
         }
+
+        expandBtnCb(this.node);
       });
     }
   }
@@ -188,6 +192,30 @@ export class ExpNodeComponent {
       });
     } else {
       throw new Error(Errors.DELETE_BTN_NOT_FOUND);
+    }
+  }
+
+  /**
+   * Registers an event listener for the selection of a expandable node.
+   *
+   * @param expNodeComponent An expandable node for which the edit button should be registered.
+   */
+  private registerSelectClickListener(expNodeComponent: Element): void {
+    const { selectCb } = this.callbacks;
+    const shapeEl = expNodeComponent.querySelector('.exp-node-shape');
+    const shapeSelectionEl = expNodeComponent.querySelector(
+      '.exp-node-shape-selection'
+    );
+
+    if (shapeEl != null && shapeSelectionEl != null) {
+      shapeEl.addEventListener('click', () => {
+        Utils.removeSelectionFromAllShapes();
+
+        shapeSelectionEl.classList.add('z-depth-1');
+        selectCb(this.node);
+      });
+    } else {
+      throw new Error(Errors.SHAPE_NOT_FOUND);
     }
   }
 }

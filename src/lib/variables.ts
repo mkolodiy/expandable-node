@@ -10,4 +10,9 @@ export class Errors {
 
   public static readonly DELETE_BTN_NOT_FOUND =
     'Could not find the delete button element.';
+
+  public static readonly SHAPE_NOT_FOUND = 'Could not find the shape element.';
+
+  public static readonly WRAPPER_NOT_FOUND =
+    'Could not find the shape element.';
 }

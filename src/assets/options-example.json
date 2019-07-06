@@ -2,7 +2,9 @@
   "container": "#container",
   "callbacks": {
     "deleteBtnCb": "someFunction",
-    "editBtnCb": "someFunction"
+    "editBtnCb": "someFunction",
+    "expandBtnCb": "someFunction",
+    "selectCb": "someFunction"
   },
   "nodes": [
     {

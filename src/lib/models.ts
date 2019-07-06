@@ -52,4 +52,14 @@ export interface NodeCallbacks {
    * Defines a callback function for the edit button.
    */
   readonly editBtnCb: (node: Node) => void;
+
+  /**
+   * Defines a callback function for the expand button.
+   */
+  readonly expandBtnCb: (node: Node) => void;
+
+  /**
+   * Defines a callback function for the selection of a expandable node.
+   */
+  readonly selectCb: (node: Node) => void;
 }
