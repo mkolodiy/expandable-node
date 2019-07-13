@@ -1,3 +1,4 @@
+import { Node, NodeType } from './models';
 import { Errors } from './variables';
 
 /**
@@ -26,5 +27,19 @@ export class Utils {
     } else {
       throw new Error(Errors.WRAPPER_NOT_FOUND);
     }
+  }
+
+  public static getCssClassForAssignedType(
+    node: Node,
+    types: ReadonlyArray<NodeType>
+  ): string {
+    const { type } = node;
+
+    if (type != null) {
+      const nodeType = types.find(t => t.type === type);
+      return nodeType != null ? nodeType.cssClass : '';
+    }
+
+    return '';
   }
 }

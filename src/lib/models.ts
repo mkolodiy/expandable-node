@@ -42,7 +42,7 @@ export interface Options {
   readonly callbacks: NodeCallbacks;
 
   /**
-   * Defines an array of nodes.
+   * Defines an array of types that can be used for a node.
    */
   readonly types: ReadonlyArray<NodeType>;
 

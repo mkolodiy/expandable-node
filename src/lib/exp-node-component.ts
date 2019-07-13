@@ -1,4 +1,4 @@
-import { Node, NodeCallbacks } from './models';
+import { Node, NodeCallbacks, NodeType } from './models';
 import { Utils } from './utils';
 import { Errors } from './variables';
 /**
@@ -10,14 +10,15 @@ export class ExpNodeComponent {
    *
    * @param node        A node object that should be rendered in the ExpNodeComponent.
    * @param containerEl A HTML element that should be a container for the ExpNodeComponent.
-   * @param callbacks   A list with passed callback functions.
+   * @param callbacks   An object with passed callback functions.
    */
   public static create(
     node: Node,
     containerEl: Element,
-    callbacks: NodeCallbacks
+    callbacks: NodeCallbacks,
+    types: ReadonlyArray<NodeType>
   ): ExpNodeComponent {
-    return new ExpNodeComponent(node, containerEl, callbacks);
+    return new ExpNodeComponent(node, containerEl, callbacks, types);
   }
 
   /**
@@ -31,9 +32,14 @@ export class ExpNodeComponent {
   private readonly node: Node;
 
   /**
-   * An object containing callbacks for all buttons defines for a node.
+   * An object containing callbacks for all buttons defined for a node.
    */
   private readonly callbacks: NodeCallbacks;
+
+  /**
+   * Defines an array of types that can be used for a node.
+   */
+  private readonly types: ReadonlyArray<NodeType>;
 
   /**
    * Initializes [[containerEl]] variable.
@@ -42,10 +48,16 @@ export class ExpNodeComponent {
    * @param containerEl A HTML element that should be a container for the ExpNodeComponent.
    * @param callbacks   A list with passed callback functions.
    */
-  constructor(node: Node, containerEl: Element, callbacks: NodeCallbacks) {
+  constructor(
+    node: Node,
+    containerEl: Element,
+    callbacks: NodeCallbacks,
+    types: ReadonlyArray<NodeType>
+  ) {
     this.node = node;
     this.containerEl = containerEl;
     this.callbacks = callbacks;
+    this.types = types;
     this.render();
   }
 
@@ -65,7 +77,10 @@ export class ExpNodeComponent {
     <div class="row">
       <div class="col s6 exp-node-first-lvl-col">
         <div class="exp-node-shape-selection"></div>
-        <div class="exp-node-shape"></div>
+        <div class="exp-node-shape ${Utils.getCssClassForAssignedType(
+          this.node,
+          this.types
+        )}"></div>
       </div>
       <div class="col s6 exp-node-first-lvl-col">
         <div class="z-depth-1 exp-node-actions">
@@ -124,7 +139,12 @@ export class ExpNodeComponent {
     );
     if (childrenContainerEl !== null) {
       childNodes.forEach(childNode =>
-        ExpNodeComponent.create(childNode, childrenContainerEl, this.callbacks)
+        ExpNodeComponent.create(
+          childNode,
+          childrenContainerEl,
+          this.callbacks,
+          this.types
+        )
       );
     }
   }

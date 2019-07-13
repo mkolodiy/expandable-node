@@ -1,6 +1,7 @@
 // tslint:disable:no-expression-statement
 import { Utils } from '../src/lib/utils';
 import { Errors } from '../src/lib/variables';
+import { Node, NodeType } from '../src/lib/models';
 
 test('checkIfElementContainsClassName', () => {
   const element: Element = document.createElement('div');
@@ -45,5 +46,40 @@ describe('removeSelectionFromAllShapes', () => {
     selectionEl.classList.add('exp-node-shape-selection');
     selectionEl.classList.add('z-depth-1');
     return selectionEl;
+  };
+});
+
+describe('getCssClassForAssignedType', () => {
+  test('return css class', () => {
+    const node: Node = createTestNode('someType');
+    const types: ReadonlyArray<NodeType> = createTypesArray();
+
+    expect(Utils.getCssClassForAssignedType(node, types)).toBe('someCssClass');
+  });
+
+  test('return empty string', () => {
+    const node: Node = createTestNode('someDifferentType');
+    const types: ReadonlyArray<NodeType> = createTypesArray();
+
+    expect(Utils.getCssClassForAssignedType(node, types)).toBe('');
+  });
+
+  const createTestNode = (nodeType: string): Node => {
+    return {
+      id: 'someNode',
+      description: 'someNode',
+      enableEditBtn: false,
+      type: nodeType,
+      childNodes: []
+    };
+  };
+
+  const createTypesArray = (): ReadonlyArray<NodeType> => {
+    return [
+      {
+        type: 'someType',
+        cssClass: 'someCssClass'
+      }
+    ];
   };
 });

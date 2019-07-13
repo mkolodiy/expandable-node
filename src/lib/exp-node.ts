@@ -56,8 +56,9 @@ export class ExpNode {
   private renderNodes(wrapperEl: Element): void {
     const { nodes } = this.options;
     const { callbacks } = this.options;
+    const { types } = this.options;
     nodes.forEach(node => {
-      ExpNodeComponent.create(node, wrapperEl, callbacks);
+      ExpNodeComponent.create(node, wrapperEl, callbacks, types);
     });
   }
 }
