@@ -1,5 +1,6 @@
 import { ExpNodeComponent } from './exp-node-component';
 import { Options } from './models';
+import { Utils } from './utils';
 import { Errors } from './variables';
 
 /**
@@ -57,6 +58,11 @@ export class ExpNode {
     const { nodes } = this.options;
     const { callbacks } = this.options;
     const { types } = this.options;
+
+    if (Utils.arrayEmpty(nodes)) {
+      throw Error(Errors.NODES_ARRAY_NOT_FOUND);
+    }
+
     nodes.forEach(node => {
       ExpNodeComponent.create(node, wrapperEl, callbacks, types);
     });

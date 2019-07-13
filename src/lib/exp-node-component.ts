@@ -100,7 +100,7 @@ export class ExpNodeComponent {
       this.registerEditBtnClickListener(expNodeComponent);
     }
 
-    if (childNodes.length !== 0) {
+    if (Utils.arrayNotEmpty(childNodes)) {
       this.enableChildrenActions(expNodeComponent);
       this.renderChildNodes(expNodeComponent);
     }

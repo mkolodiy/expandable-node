@@ -15,4 +15,7 @@ export class Errors {
 
   public static readonly WRAPPER_NOT_FOUND =
     'Could not find the wrapper element.';
+
+  public static readonly NODES_ARRAY_NOT_FOUND =
+    'The options object does not contain the nodes array.';
 }

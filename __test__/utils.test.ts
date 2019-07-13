@@ -1,7 +1,7 @@
 // tslint:disable:no-expression-statement
+import { Node, NodeType } from '../src/lib/models';
 import { Utils } from '../src/lib/utils';
 import { Errors } from '../src/lib/variables';
-import { Node, NodeType } from '../src/lib/models';
 
 test('checkIfElementContainsClassName', () => {
   const element: Element = document.createElement('div');
@@ -82,4 +82,22 @@ describe('getCssClassForAssignedType', () => {
       }
     ];
   };
+});
+
+test('arrayEmpty', () => {
+  const testArray1: ReadonlyArray<number> = [1, 2, 3];
+  const testArray2: ReadonlyArray<number> = [];
+  const testArray3: any = null;
+  expect(Utils.arrayEmpty(testArray1)).toBeFalsy();
+  expect(Utils.arrayEmpty(testArray2)).toBeTruthy();
+  expect(Utils.arrayEmpty(testArray3)).toBeTruthy();
+});
+
+test('arrayNotEmpty', () => {
+  const testArray1: ReadonlyArray<number> = [1, 2, 3];
+  const testArray2: ReadonlyArray<number> = [];
+  const testArray3: any = null;
+  expect(Utils.arrayNotEmpty(testArray1)).toBeTruthy();
+  expect(Utils.arrayNotEmpty(testArray2)).toBeFalsy();
+  expect(Utils.arrayNotEmpty(testArray3)).toBeFalsy();
 });

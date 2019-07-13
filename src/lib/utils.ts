@@ -18,6 +18,9 @@ export class Utils {
     return element.classList.contains(className);
   }
 
+  /**
+   * Removes selection from all nodes presented in wrapper element.
+   */
   public static removeSelectionFromAllShapes(): void {
     const wrapperEl = document.querySelector('.exp-node-wrapper');
     if (wrapperEl != null) {
@@ -29,6 +32,12 @@ export class Utils {
     }
   }
 
+  /**
+   * Retrieves the css class from types array bases on the type assigned to a node.
+   *
+   * @param node  Node object containing the type for which the css class should be retrieved from types array.
+   * @param types Array containing list of types.
+   */
   public static getCssClassForAssignedType(
     node: Node,
     types: ReadonlyArray<NodeType>
@@ -41,5 +50,13 @@ export class Utils {
     }
 
     return '';
+  }
+
+  public static arrayEmpty(array: ReadonlyArray<any>): boolean {
+    return array === undefined || array === null || array.length === 0;
+  }
+
+  public static arrayNotEmpty(array: ReadonlyArray<any>): boolean {
+    return !this.arrayEmpty(array);
   }
 }
