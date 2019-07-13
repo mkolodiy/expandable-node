@@ -8,8 +8,9 @@ export class ExpNodeComponent {
   /**
    * Creates a new ExpNodeComponent and adds it to a HTML element.
    *
-   * @param containerEl A HTML element that should be a container for the ExpNodeComponent.
    * @param node        A node object that should be rendered in the ExpNodeComponent.
+   * @param containerEl A HTML element that should be a container for the ExpNodeComponent.
+   * @param callbacks   A list with passed callback functions.
    */
   public static create(
     node: Node,
@@ -37,11 +38,13 @@ export class ExpNodeComponent {
   /**
    * Initializes [[containerEl]] variable.
    *
+   * @param node        A node object that should be rendered in the ExpNodeComponent.
    * @param containerEl A HTML element that should be a container for the ExpNodeComponent.
+   * @param callbacks   A list with passed callback functions.
    */
   constructor(node: Node, containerEl: Element, callbacks: NodeCallbacks) {
-    this.containerEl = containerEl;
     this.node = node;
+    this.containerEl = containerEl;
     this.callbacks = callbacks;
     this.render();
   }

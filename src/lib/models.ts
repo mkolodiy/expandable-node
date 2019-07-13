@@ -17,6 +17,11 @@ export interface Node {
   readonly enableEditBtn: boolean;
 
   /**
+   * Defines the name of the type.
+   */
+  readonly type: string;
+
+  /**
    * Defines an array of child nodes that a node might contain.
    */
   readonly childNodes: ReadonlyArray<Node>;
@@ -35,6 +40,11 @@ export interface Options {
    * Defines an object containing callbacks for all buttons defines for a node.
    */
   readonly callbacks: NodeCallbacks;
+
+  /**
+   * Defines an array of nodes.
+   */
+  readonly types: ReadonlyArray<NodeType>;
 
   /**
    * Defines an array of nodes.
@@ -62,4 +72,16 @@ export interface NodeCallbacks {
    * Defines a callback function for the selection of a expandable node.
    */
   readonly selectCb: (node: Node) => void;
+}
+
+export interface NodeType {
+  /**
+   * Defines the name of the type.
+   */
+  readonly type: string;
+
+  /**
+   * Defines a css class that should be appended to a expendable node.
+   */
+  readonly cssClass: string;
 }

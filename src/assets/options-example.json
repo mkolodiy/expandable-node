@@ -6,11 +6,18 @@
     "expandBtnCb": "someFunction",
     "selectCb": "someFunction"
   },
+  "types": [
+    {
+      "type": "someType",
+      "cssClass": "someCssClass"
+    }
+  ],
   "nodes": [
     {
       "id": "node01",
       "description": "Level 1 node.",
       "enableEditBtn": true,
+      "type": "someType",
       "childNodes": [
         {
           "id": "node01-childNode01",
