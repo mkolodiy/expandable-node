@@ -1,5 +1,5 @@
 // tslint:disable:no-expression-statement
-import { Utils } from './utils';
+import { Utils } from '../src/lib/utils';
 
 test('checkIfElementContainsClassName', () => {
   const element: Element = document.createElement('div');
