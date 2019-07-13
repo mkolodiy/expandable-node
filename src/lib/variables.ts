@@ -14,5 +14,5 @@ export class Errors {
   public static readonly SHAPE_NOT_FOUND = 'Could not find the shape element.';
 
   public static readonly WRAPPER_NOT_FOUND =
-    'Could not find the shape element.';
+    'Could not find the wrapper element.';
 }
