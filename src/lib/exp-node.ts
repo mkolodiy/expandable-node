@@ -43,7 +43,9 @@ export class ExpNode {
    */
   private createWrapper(): void {
     const { container } = this.options;
-    const containerEl = document.querySelector(container);
+    const containerEl = document.querySelector(`#${container}`)
+      ? document.querySelector(`#${container}`)
+      : document.querySelector(`.${container}`);
     const wrapperEl = document.createElement('div');
     wrapperEl.classList.add('exp-node-wrapper');
     if (containerEl !== null) {

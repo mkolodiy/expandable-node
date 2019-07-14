@@ -62,6 +62,7 @@ describe('getCssClassForAssignedType', () => {
     const types: ReadonlyArray<NodeType> = createTypesArray();
 
     expect(Utils.getCssClassForAssignedType(node, types)).toBe('');
+    expect(Utils.getCssClassForAssignedType(node)).toBe('');
   });
 
   test('return empty string when type is not set on a node', () => {
@@ -101,6 +102,7 @@ test('arrayEmpty', () => {
   expect(Utils.arrayEmpty(testArray1)).toBeFalsy();
   expect(Utils.arrayEmpty(testArray2)).toBeTruthy();
   expect(Utils.arrayEmpty(testArray3)).toBeTruthy();
+  expect(Utils.arrayEmpty()).toBeTruthy();
 });
 
 test('arrayNotEmpty', () => {
@@ -110,6 +112,7 @@ test('arrayNotEmpty', () => {
   expect(Utils.arrayNotEmpty(testArray1)).toBeTruthy();
   expect(Utils.arrayNotEmpty(testArray2)).toBeFalsy();
   expect(Utils.arrayNotEmpty(testArray3)).toBeFalsy();
+  expect(Utils.arrayNotEmpty()).toBeFalsy();
 });
 
 test('checkIfObjectHasProperty', () => {
