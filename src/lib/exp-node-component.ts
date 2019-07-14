@@ -11,12 +11,13 @@ export class ExpNodeComponent {
    * @param node        A node object that should be rendered in the ExpNodeComponent.
    * @param containerEl A HTML element that should be a container for the ExpNodeComponent.
    * @param callbacks   An object with passed callback functions.
+   * @param types       An array containing types that can be used for a node.
    */
   public static create(
     node: Node,
     containerEl: Element,
-    callbacks: NodeCallbacks,
-    types: ReadonlyArray<NodeType>
+    callbacks?: NodeCallbacks,
+    types?: ReadonlyArray<NodeType>
   ): ExpNodeComponent {
     return new ExpNodeComponent(node, containerEl, callbacks, types);
   }
@@ -34,25 +35,26 @@ export class ExpNodeComponent {
   /**
    * An object containing callbacks for all buttons defined for a node.
    */
-  private readonly callbacks: NodeCallbacks;
+  private readonly callbacks?: NodeCallbacks;
 
   /**
    * Defines an array of types that can be used for a node.
    */
-  private readonly types: ReadonlyArray<NodeType>;
+  private readonly types?: ReadonlyArray<NodeType>;
 
   /**
-   * Initializes [[containerEl]] variable.
+   * Initializes [[node]], [[containerEl]], [[callbacks]] and [[types]] variable.
    *
    * @param node        A node object that should be rendered in the ExpNodeComponent.
    * @param containerEl A HTML element that should be a container for the ExpNodeComponent.
-   * @param callbacks   A list with passed callback functions.
+   * @param callbacks   An object with passed callback functions.
+   * @param types       An array containing types that can be used for a node.
    */
   constructor(
     node: Node,
     containerEl: Element,
-    callbacks: NodeCallbacks,
-    types: ReadonlyArray<NodeType>
+    callbacks?: NodeCallbacks,
+    types?: ReadonlyArray<NodeType>
   ) {
     this.node = node;
     this.containerEl = containerEl;
@@ -133,7 +135,7 @@ export class ExpNodeComponent {
    * @param expNodeComponent An expandable node which children should be rendered out.
    */
   private renderChildNodes(expNodeComponent: Element): void {
-    const { childNodes } = this.node;
+    const { childNodes = [] } = this.node;
     const childrenContainerEl = expNodeComponent.querySelector(
       '.exp-node-children'
     );
@@ -155,7 +157,6 @@ export class ExpNodeComponent {
    * @param expNodeComponent An expandable node for which the expand button should be registered.
    */
   private registerExpandBtnClickListener(expNodeComponent: Element): void {
-    const { expandBtnCb } = this.callbacks;
     const expandBtnEl = expNodeComponent.querySelector('.exp-node-expand-btn');
     const childrenContainerEl = expNodeComponent.querySelector(
       '.exp-node-children'
@@ -176,7 +177,14 @@ export class ExpNodeComponent {
           expandBtnEl.innerHTML = '<i class="material-icons">expand_less</i>';
         }
 
-        expandBtnCb(this.node);
+        if (Utils.checkIfObjectHasProperty(this.callbacks, 'expandBtnCb')) {
+          const { expandBtnCb } = this.callbacks!;
+          if (Utils.isDefined(expandBtnCb)) {
+            expandBtnCb!(this.node);
+          } else {
+            throw new Error(Errors.EXPAND_BTN_CB_UNDEFINED);
+          }
+        }
       });
     }
   }
@@ -187,12 +195,20 @@ export class ExpNodeComponent {
    * @param expNodeComponent An expandable node for which the edit button should be registered.
    */
   private registerEditBtnClickListener(expNodeComponent: Element): void {
-    const { editBtnCb } = this.callbacks;
     const editBtnEl = expNodeComponent.querySelector('.exp-node-edit-btn');
 
     if (editBtnEl != null) {
       editBtnEl.classList.remove('exp-node-hide');
-      editBtnEl.addEventListener('click', () => editBtnCb(this.node));
+      editBtnEl.addEventListener('click', () => {
+        if (Utils.checkIfObjectHasProperty(this.callbacks, 'editBtnCb')) {
+          const { editBtnCb } = this.callbacks!;
+          if (Utils.isDefined(editBtnCb)) {
+            editBtnCb!(this.node);
+          } else {
+            throw new Error(Errors.EDIT_BTN_CB_UNDEFINED);
+          }
+        }
+      });
     } else {
       throw new Error(Errors.EDIT_BTN_NOT_FOUND);
     }
@@ -204,14 +220,20 @@ export class ExpNodeComponent {
    * @param expNodeComponent An expandable node for which the edit button should be registered.
    */
   private registerDeleteBtnClickListener(expNodeComponent: Element): void {
-    const { deleteBtnCb } = this.callbacks;
     const deleteBtnEl = expNodeComponent.querySelector('.exp-node-delete-btn');
     const parentEl = (expNodeComponent as HTMLElement).parentElement;
 
     if (deleteBtnEl != null && parentEl != null) {
       deleteBtnEl.addEventListener('click', () => {
         parentEl.removeChild(expNodeComponent);
-        deleteBtnCb(this.node);
+        if (Utils.checkIfObjectHasProperty(this.callbacks, 'deleteBtnCb')) {
+          const { deleteBtnCb } = this.callbacks!;
+          if (Utils.isDefined(deleteBtnCb)) {
+            deleteBtnCb!(this.node);
+          } else {
+            throw new Error(Errors.DELETE_BTN_CB_UNDEFINED);
+          }
+        }
       });
     } else {
       throw new Error(Errors.DELETE_BTN_NOT_FOUND);
@@ -224,7 +246,6 @@ export class ExpNodeComponent {
    * @param expNodeComponent An expandable node for which the edit button should be registered.
    */
   private registerSelectClickListener(expNodeComponent: Element): void {
-    const { selectCb } = this.callbacks;
     const shapeEl = expNodeComponent.querySelector('.exp-node-shape');
     const shapeSelectionEl = expNodeComponent.querySelector(
       '.exp-node-shape-selection'
@@ -233,9 +254,15 @@ export class ExpNodeComponent {
     if (shapeEl != null && shapeSelectionEl != null) {
       shapeEl.addEventListener('click', () => {
         Utils.removeSelectionFromAllShapes();
-
         shapeSelectionEl.classList.add('z-depth-1');
-        selectCb(this.node);
+        if (Utils.checkIfObjectHasProperty(this.callbacks, 'selectCb')) {
+          const { selectCb } = this.callbacks!;
+          if (Utils.isDefined(selectCb)) {
+            selectCb!(this.node);
+          } else {
+            throw new Error(Errors.SELECT_BTN_CB_UNDEFINED);
+          }
+        }
       });
     } else {
       throw new Error(Errors.SHAPE_NOT_FOUND);

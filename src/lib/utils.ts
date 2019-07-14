@@ -40,11 +40,11 @@ export class Utils {
    */
   public static getCssClassForAssignedType(
     node: Node,
-    types: ReadonlyArray<NodeType>
+    types: ReadonlyArray<NodeType> = []
   ): string {
     const { type } = node;
 
-    if (type != null) {
+    if (type != null && this.arrayNotEmpty(types)) {
       const nodeType = types.find(t => t.type === type);
       return nodeType != null ? nodeType.cssClass : '';
     }
@@ -52,11 +52,42 @@ export class Utils {
     return '';
   }
 
-  public static arrayEmpty(array: ReadonlyArray<any>): boolean {
+  /**
+   * Checks if an array is empty.
+   *
+   * @param array Array that should be tested.
+   */
+  public static arrayEmpty(array: ReadonlyArray<any> = []): boolean {
     return array === undefined || array === null || array.length === 0;
   }
 
-  public static arrayNotEmpty(array: ReadonlyArray<any>): boolean {
+  /**
+   * Checks if an array is not empty.
+   *
+   * @param array Array that should be tested.
+   */
+  public static arrayNotEmpty(array: ReadonlyArray<any> = []): boolean {
     return !this.arrayEmpty(array);
+  }
+
+  /**
+   *
+   * @param object   An object that should be checked if it has a property.
+   * @param property Property that should be used for check.
+   */
+  public static checkIfObjectHasProperty(
+    object: {} = {},
+    property: string
+  ): boolean {
+    return object.hasOwnProperty(property);
+  }
+
+  /**
+   * Checks if an object is not undefined and not null.
+   *
+   * @param object Object that should be tested.
+   */
+  public static isDefined(object: any): boolean {
+    return object !== undefined && object !== null;
   }
 }

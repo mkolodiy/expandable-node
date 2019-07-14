@@ -14,17 +14,17 @@ export interface Node {
   /**
    * Defines if the edit button should be shown for a node.
    */
-  readonly enableEditBtn: boolean;
+  readonly enableEditBtn?: boolean;
 
   /**
    * Defines the name of the type.
    */
-  readonly type: string;
+  readonly type?: string;
 
   /**
    * Defines an array of child nodes that a node might contain.
    */
-  readonly childNodes: ReadonlyArray<Node>;
+  readonly childNodes?: ReadonlyArray<Node>;
 }
 
 /**
@@ -39,12 +39,12 @@ export interface Options {
   /**
    * Defines an object containing callbacks for all buttons defines for a node.
    */
-  readonly callbacks: NodeCallbacks;
+  readonly callbacks?: NodeCallbacks;
 
   /**
    * Defines an array of types that can be used for a node.
    */
-  readonly types: ReadonlyArray<NodeType>;
+  readonly types?: ReadonlyArray<NodeType>;
 
   /**
    * Defines an array of nodes.
@@ -56,22 +56,22 @@ export interface NodeCallbacks {
   /**
    * Defines a callback function for the delete button.
    */
-  readonly deleteBtnCb: (node: Node) => void;
+  readonly deleteBtnCb?: (node: Node) => void;
 
   /**
    * Defines a callback function for the edit button.
    */
-  readonly editBtnCb: (node: Node) => void;
+  readonly editBtnCb?: (node: Node) => void;
 
   /**
    * Defines a callback function for the expand button.
    */
-  readonly expandBtnCb: (node: Node) => void;
+  readonly expandBtnCb?: (node: Node) => void;
 
   /**
    * Defines a callback function for the selection of a expandable node.
    */
-  readonly selectCb: (node: Node) => void;
+  readonly selectCb?: (node: Node) => void;
 }
 
 export interface NodeType {

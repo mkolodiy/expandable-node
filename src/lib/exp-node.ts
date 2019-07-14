@@ -54,6 +54,11 @@ export class ExpNode {
     }
   }
 
+  /**
+   * Creates a HTML element for every node element that is present in the nodes array. Will throw an error if the nodes array is empty.
+   *
+   * @param wrapperEl A HTML element that will contain all expandable nodes.
+   */
   private renderNodes(wrapperEl: Element): void {
     const { nodes } = this.options;
     const { callbacks } = this.options;

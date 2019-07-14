@@ -1,5 +1,5 @@
 // tslint:disable:no-expression-statement
-import { Node, NodeType } from '../src/lib/models';
+import { Node, NodeCallbacks, NodeType } from '../src/lib/models';
 import { Utils } from '../src/lib/utils';
 import { Errors } from '../src/lib/variables';
 
@@ -57,21 +57,31 @@ describe('getCssClassForAssignedType', () => {
     expect(Utils.getCssClassForAssignedType(node, types)).toBe('someCssClass');
   });
 
-  test('return empty string', () => {
+  test('return empty string when type is not present in types array', () => {
     const node: Node = createTestNode('someDifferentType');
     const types: ReadonlyArray<NodeType> = createTypesArray();
 
     expect(Utils.getCssClassForAssignedType(node, types)).toBe('');
   });
 
-  const createTestNode = (nodeType: string): Node => {
-    return {
-      id: 'someNode',
-      description: 'someNode',
-      enableEditBtn: false,
-      type: nodeType,
-      childNodes: []
-    };
+  test('return empty string when type is not set on a node', () => {
+    const node: Node = createTestNode();
+    const types: ReadonlyArray<NodeType> = createTypesArray();
+
+    expect(Utils.getCssClassForAssignedType(node, types)).toBe('');
+  });
+
+  const createTestNode = (nodeType?: string): Node => {
+    return nodeType !== undefined
+      ? {
+          id: 'someNode',
+          description: 'someNode',
+          type: nodeType
+        }
+      : {
+          id: 'someNode',
+          description: 'someNode'
+        };
   };
 
   const createTypesArray = (): ReadonlyArray<NodeType> => {
@@ -100,4 +110,44 @@ test('arrayNotEmpty', () => {
   expect(Utils.arrayNotEmpty(testArray1)).toBeTruthy();
   expect(Utils.arrayNotEmpty(testArray2)).toBeFalsy();
   expect(Utils.arrayNotEmpty(testArray3)).toBeFalsy();
+});
+
+test('checkIfObjectHasProperty', () => {
+  const object1 = {
+    property1: 'property',
+    property2: 123
+  };
+  expect(Utils.checkIfObjectHasProperty(object1, 'property1')).toBeTruthy();
+  expect(Utils.checkIfObjectHasProperty(object1, 'property2')).toBeTruthy();
+  expect(Utils.checkIfObjectHasProperty(object1, 'property3')).toBeFalsy();
+
+  const dummyFn = () => {
+    // Unused body
+  };
+  const object2: NodeCallbacks = {
+    deleteBtnCb: dummyFn,
+    editBtnCb: dummyFn
+  };
+  expect(Utils.checkIfObjectHasProperty(object2, 'deleteBtnCb')).toBeTruthy();
+  expect(Utils.checkIfObjectHasProperty(object2, 'editBtnCb')).toBeTruthy();
+  expect(Utils.checkIfObjectHasProperty(object2, 'expandBtnCb')).toBeFalsy();
+  expect(Utils.checkIfObjectHasProperty(object2, 'selectCb')).toBeFalsy();
+
+  const object3 = undefined;
+  expect(Utils.checkIfObjectHasProperty(object3, 'someProperty')).toBeFalsy();
+});
+
+test('isDefined', () => {
+  const test1: number = 123;
+  const test2: string = 'someTestString';
+  const test3 = null;
+  const test4 = undefined;
+  const test5 = () => {
+    // Unused body
+  };
+  expect(Utils.isDefined(test1)).toBeTruthy();
+  expect(Utils.isDefined(test2)).toBeTruthy();
+  expect(Utils.isDefined(test3)).toBeFalsy();
+  expect(Utils.isDefined(test4)).toBeFalsy();
+  expect(Utils.isDefined(test5)).toBeTruthy();
 });
