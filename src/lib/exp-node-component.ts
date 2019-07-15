@@ -98,10 +98,6 @@ export class ExpNodeComponent {
       <div class="col s6 exp-node-second-lvl-col exp-node-children"></div>
     </div>`;
 
-    if (enableEditBtn) {
-      this.registerEditBtnClickListener(expNodeComponent);
-    }
-
     if (Utils.arrayNotEmpty(childNodes)) {
       this.enableChildrenActions(expNodeComponent);
       this.renderChildNodes(expNodeComponent);
@@ -109,6 +105,9 @@ export class ExpNodeComponent {
 
     this.containerEl.appendChild(expNodeComponent);
 
+    if (enableEditBtn) {
+      this.registerEditBtnClickListener(expNodeComponent);
+    }
     this.registerDeleteBtnClickListener(expNodeComponent);
     this.registerSelectClickListener(expNodeComponent);
   }
