@@ -3,8 +3,12 @@ import { ExpNode } from '../src/lib/exp-node';
 import { Options } from '../src/lib/models';
 // import { Errors } from '../src/lib/variables';
 
+afterEach(() => {
+  document.body.querySelector('#someContainerId')!.remove();
+});
+
 test('expandable node element should be added to the wrapper element', () => {
-  const wrapperEl = createExpNodeWithMinimalOptions();
+  const wrapperEl = createExpNode(createOptions1());
   const expNodeContainerEl = wrapperEl.querySelector('.exp-node-container');
   expect(expNodeContainerEl).toBeDefined();
   expect(expNodeContainerEl).not.toBeNull();
@@ -13,6 +17,20 @@ test('expandable node element should be added to the wrapper element', () => {
     .querySelector('.exp-node-desc')!
     .innerHTML.trim();
   expect(description).toBe('Level 1 node.');
+});
+
+test('expandable node element should have expand button', () => {
+  const wrapperEl = createExpNode(createOptions2());
+  const expNodeChildrenActionsWrapper = wrapperEl.querySelector(
+    '.exp-node-children-actions-wrapper'
+  );
+  expect(expNodeChildrenActionsWrapper).toBeDefined();
+  expect(expNodeChildrenActionsWrapper).not.toBeNull();
+  const expNodeExpandBtn = expNodeChildrenActionsWrapper!.querySelector(
+    '.exp-node-expand-btn'
+  );
+  expect(expNodeExpandBtn).toBeDefined();
+  expect(expNodeExpandBtn).not.toBeNull();
 });
 
 /* Helper Methods */
@@ -24,7 +42,7 @@ const createContainerElWithId = (): Element => {
   return containerEl;
 };
 
-const createMinimalOptions = (): Options => {
+const createOptions1 = (): Options => {
   return {
     container: 'someContainerId',
     nodes: [
@@ -36,14 +54,36 @@ const createMinimalOptions = (): Options => {
   };
 };
 
-const createExpNodeWithMinimalOptions = (): Element => {
+const createOptions2 = (): Options => {
+  return {
+    container: 'someContainerId',
+    nodes: [
+      {
+        id: 'node01',
+        description: 'Level 1 node.',
+        childNodes: [
+          {
+            id: 'node01-childNode01',
+            description: 'Child node 1.'
+          },
+          {
+            id: 'node01-childNode02',
+            description: 'Child node 2.'
+          }
+        ]
+      }
+    ]
+  };
+};
+
+const createExpNode = (options: Options): Element => {
   const containerEl = createContainerElWithId();
   expect(containerEl).toBeDefined();
-  const options: Options = createMinimalOptions();
   const expNode: ExpNode = ExpNode.create(options);
   expect(expNode).toBeDefined();
   expect(expNode).toBeInstanceOf(ExpNode);
   const wrapperEl = containerEl.querySelector('.exp-node-wrapper');
   expect(wrapperEl).toBeDefined();
+  expect(wrapperEl).not.toBeNull();
   return wrapperEl!;
 };
