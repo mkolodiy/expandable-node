@@ -33,6 +33,50 @@ test('expandable node element should have expand button', () => {
   expect(expNodeExpandBtn).not.toBeNull();
 });
 
+test('expand button functionality of a expandable node', () => {
+  const options: Options = createOptions2();
+  const expandBtnCbSpy = jest.spyOn(options.callbacks!, 'expandBtnCb');
+
+  const wrapperEl = createExpNode(options);
+  const expNodeChildrenActionsWrapper = wrapperEl.querySelector(
+    '.exp-node-children-actions-wrapper'
+  );
+  expect(expNodeChildrenActionsWrapper).toBeDefined();
+  expect(expNodeChildrenActionsWrapper).not.toBeNull();
+  const expNodeExpandBtn = expNodeChildrenActionsWrapper!.querySelector(
+    '.exp-node-expand-btn'
+  );
+  expect(expNodeExpandBtn).toBeDefined();
+  expect(expNodeExpandBtn).not.toBeNull();
+  const childrenContainerEl = wrapperEl.querySelector('.exp-node-children');
+  expect(childrenContainerEl).toBeDefined();
+  expect(childrenContainerEl).not.toBeNull();
+
+  // Collapse child nodes
+  (expNodeExpandBtn as HTMLElement).click();
+  expect(childrenContainerEl!.classList.contains('exp-node-hide')).toBeTruthy();
+  expect(
+    expNodeExpandBtn!.querySelector('.material-icons')!.innerHTML.trim()
+  ).toBe('expand_more');
+  expect(expandBtnCbSpy).toHaveBeenCalled();
+  expect(expandBtnCbSpy).toHaveReturned();
+  expect(expandBtnCbSpy).toHaveReturnedWith(
+    `Node clicked: ${options.nodes[0].id}`
+  );
+
+  // Expand child nodes
+  (expNodeExpandBtn as HTMLElement).click();
+  expect(childrenContainerEl!.classList.contains('exp-node-hide')).toBeFalsy();
+  expect(
+    expNodeExpandBtn!.querySelector('.material-icons')!.innerHTML.trim()
+  ).toBe('expand_less');
+  expect(expandBtnCbSpy).toHaveBeenCalled();
+  expect(expandBtnCbSpy).toHaveReturned();
+  expect(expandBtnCbSpy).toHaveReturnedWith(
+    `Node clicked: ${options.nodes[0].id}`
+  );
+});
+
 /* Helper Methods */
 
 const createContainerElWithId = (): Element => {
@@ -57,6 +101,9 @@ const createOptions1 = (): Options => {
 const createOptions2 = (): Options => {
   return {
     container: 'someContainerId',
+    callbacks: {
+      expandBtnCb: node => `Node clicked: ${node.id}`
+    },
     nodes: [
       {
         id: 'node01',
