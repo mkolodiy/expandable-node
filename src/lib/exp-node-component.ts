@@ -185,6 +185,8 @@ export class ExpNodeComponent {
           }
         }
       });
+    } else {
+      throw new Error(Errors.EXPAND_BTN_NOT_FOUND);
     }
   }
 
