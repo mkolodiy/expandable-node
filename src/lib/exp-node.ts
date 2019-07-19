@@ -1,10 +1,10 @@
 import { ExpNodeComponent } from './exp-node-component';
 import { Options } from './models';
 import { Utils } from './utils';
-import { Errors } from './variables';
+import { ClassNames, Errors } from './variables';
 
 /**
- * Contains all variables and methods necessary for creating and managing of a expandable node.
+ * Contains all variables and methods necessary for creating and managing a node.
  *
  * A new instance of ExpNode can be created as following:
  * ```
@@ -15,7 +15,7 @@ export class ExpNode {
   /**
    * Creates a new instance of ExpNode class.
    *
-   * @param options [[Options]] object containing values needed for creating a new expandable node.
+   * @param options [[Options]] object containing values needed for creating a new node.
    * @returns       A new instance of ExpNode.
    */
   public static create(options: Options): ExpNode {
@@ -23,14 +23,14 @@ export class ExpNode {
   }
 
   /**
-   * Object containing values needed for creating a new expandable node.
+   * Object containing values needed for creating a new node.
    */
   private readonly options: Options;
 
   /**
-   * Initializes [[options]] variable. Calls [[createWrapper]] to create a wrapper HTML element.
+   * Initializes [[options]] variable. Calls [[createWrapper]] to create a wrapper element.
    *
-   * @param options Object containing values needed for creating a new expandable node.
+   * @param options Object containing values needed for creating a new node.
    */
   constructor(options: Options) {
     this.options = { ...options };
@@ -38,7 +38,7 @@ export class ExpNode {
   }
 
   /**
-   * Creates a wrapper HTML element that will contain all expandable nodes that are present in [[options]] object.
+   * Creates a wrapper element that will contain all nodes that are present in [[options]] object.
    * Throws an error if the container property passed in [[options]] object can not be found.
    */
   private createWrapper(): void {
@@ -47,7 +47,7 @@ export class ExpNode {
       ? document.querySelector(`#${container}`)
       : document.querySelector(`.${container}`);
     const wrapperEl = document.createElement('div');
-    wrapperEl.classList.add('exp-node-wrapper');
+    wrapperEl.classList.add(ClassNames.WRAPPER);
     if (containerEl !== null) {
       containerEl.appendChild(wrapperEl);
       this.renderNodes(wrapperEl);
@@ -57,9 +57,9 @@ export class ExpNode {
   }
 
   /**
-   * Creates a HTML element for every node element that is present in the nodes array. Will throw an error if the nodes array is empty.
+   * Creates a new element for every node element that is present in the nodes array. Will throw an error if the nodes array is empty.
    *
-   * @param wrapperEl A HTML element that will contain all expandable nodes.
+   * @param wrapperEl Element that will contain all nodes.
    */
   private renderNodes(wrapperEl: Element): void {
     const { nodes } = this.options;
@@ -70,8 +70,8 @@ export class ExpNode {
       throw Error(Errors.NODES_ARRAY_NOT_FOUND);
     }
 
-    nodes.forEach(node => {
-      ExpNodeComponent.create(node, wrapperEl, callbacks, types);
-    });
+    nodes.forEach(node =>
+      ExpNodeComponent.create(node, wrapperEl, callbacks, types)
+    );
   }
 }

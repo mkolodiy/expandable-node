@@ -28,16 +28,16 @@ export interface Node {
 }
 
 /**
- * Representation of options object.
+ * Representation of an options object.
  */
 export interface Options {
   /**
-   * Defines id or class of a HTML element which should be used to create a new expandable node.
+   * Defines id or class of a HTML element which should be used to create a new node.
    */
   readonly container: string;
 
   /**
-   * Defines an object containing callbacks for all buttons defines for a node.
+   * Defines an object containing callbacks for all buttons defined for a node.
    */
   readonly callbacks?: NodeCallbacks;
 
@@ -52,6 +52,9 @@ export interface Options {
   readonly nodes: ReadonlyArray<Node>;
 }
 
+/**
+ * Representation of a callbacks object.
+ */
 export interface NodeCallbacks {
   /**
    * Defines a callback function for the delete button.
@@ -69,11 +72,14 @@ export interface NodeCallbacks {
   readonly expandBtnCb?: (node: Node) => void;
 
   /**
-   * Defines a callback function for the selection of a expandable node.
+   * Defines a callback function for the selection of a node.
    */
   readonly selectCb?: (node: Node) => void;
 }
 
+/**
+ * Representation of a type object.
+ */
 export interface NodeType {
   /**
    * Defines the name of the type.

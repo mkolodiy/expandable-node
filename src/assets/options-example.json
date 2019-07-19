@@ -40,7 +40,6 @@
       }
     ]
   },
-  // Minimum config required
   {
     "container": "#container",
     "nodes": [

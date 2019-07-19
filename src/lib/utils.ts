@@ -1,5 +1,5 @@
 import { Node, NodeType } from './models';
-import { Errors } from './variables';
+import { ClassNames, Errors, Selectors } from './variables';
 
 /**
  * Contains helper methods.
@@ -22,11 +22,11 @@ export class Utils {
    * Removes selection from all nodes presented in wrapper element.
    */
   public static removeSelectionFromAllShapes(): void {
-    const wrapperEl = document.querySelector('.exp-node-wrapper');
+    const wrapperEl = document.querySelector(Selectors.WRAPPER);
     if (wrapperEl != null) {
       wrapperEl
-        .querySelectorAll('.exp-node-shape-selection')
-        .forEach(el => el.classList.remove('z-depth-1'));
+        .querySelectorAll(Selectors.SHAPE_SELECTION)
+        .forEach(el => el.classList.remove(ClassNames.Z_DEPTH_1));
     } else {
       throw new Error(Errors.WRAPPER_NOT_FOUND);
     }
@@ -55,7 +55,7 @@ export class Utils {
   /**
    * Checks if an array is empty.
    *
-   * @param array Array that should be tested.
+   * @param array Array that should be checked.
    */
   public static arrayEmpty(array: ReadonlyArray<any> = []): boolean {
     return array === undefined || array === null || array.length === 0;
@@ -64,13 +64,14 @@ export class Utils {
   /**
    * Checks if an array is not empty.
    *
-   * @param array Array that should be tested.
+   * @param array Array that should be checked.
    */
   public static arrayNotEmpty(array: ReadonlyArray<any> = []): boolean {
     return !this.arrayEmpty(array);
   }
 
   /**
+   * Checks if an object has a property.
    *
    * @param object   An object that should be checked if it has a property.
    * @param property Property that should be used for check.

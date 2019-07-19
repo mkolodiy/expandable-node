@@ -1,17 +1,18 @@
 import { Node, NodeCallbacks, NodeType } from './models';
 import { Utils } from './utils';
-import { Errors } from './variables';
+import { ClassNames, Errors, Selectors } from './variables';
+
 /**
- * Component used to render a expandable node.
+ * Component used to render a node.
  */
 export class ExpNodeComponent {
   /**
-   * Creates a new ExpNodeComponent and adds it to a HTML element.
+   * Creates a new instance of ExpNodeComponent and adds it to a container.
    *
-   * @param node        A node object that should be rendered in the ExpNodeComponent.
-   * @param containerEl A HTML element that should be a container for the ExpNodeComponent.
-   * @param callbacks   An object with passed callback functions.
-   * @param types       An array containing types that can be used for a node.
+   * @param node        Node object that should be rendered in the ExpNodeComponent.
+   * @param containerEl Element that should be a container for the ExpNodeComponent.
+   * @param callbacks   Object with callback functions.
+   * @param types       Array containing types that can be used for a node.
    */
   public static create(
     node: Node,
@@ -23,17 +24,17 @@ export class ExpNodeComponent {
   }
 
   /**
-   * A HTML element where the ExpNodeComponent will be appended to.
+   * Defines an element where the ExpNodeComponent will be appended to.
    */
   private readonly containerEl: Element;
 
   /**
-   *  A node object that should be rendered in the ExpNodeComponent.
+   *  Defines a node object that should be rendered in the ExpNodeComponent.
    */
   private readonly node: Node;
 
   /**
-   * An object containing callbacks for all buttons defined for a node.
+   * Defines an object containing callbacks for all buttons defined for a node.
    */
   private readonly callbacks?: NodeCallbacks;
 
@@ -43,12 +44,12 @@ export class ExpNodeComponent {
   private readonly types?: ReadonlyArray<NodeType>;
 
   /**
-   * Initializes [[node]], [[containerEl]], [[callbacks]] and [[types]] variable.
+   * Initializes [[node]], [[containerEl]], [[callbacks]] and [[types]] variable. Calls [[render]] to render passed node.
    *
-   * @param node        A node object that should be rendered in the ExpNodeComponent.
-   * @param containerEl A HTML element that should be a container for the ExpNodeComponent.
-   * @param callbacks   An object with passed callback functions.
-   * @param types       An array containing types that can be used for a node.
+   * @param node        Node object that should be rendered in the ExpNodeComponent.
+   * @param containerEl Element that should be a container for the ExpNodeComponent.
+   * @param callbacks   Object with callback functions.
+   * @param types       Array containing types that can be used for a node.
    */
   constructor(
     node: Node,
@@ -64,7 +65,7 @@ export class ExpNodeComponent {
   }
 
   /**
-   * Creates HTML structure for an expandable node and adds it to the [[containerEl]].
+   * Creates a node and adds it to the [[containerEl]].
    */
   private render(): void {
     const { id } = this.node;
@@ -74,7 +75,7 @@ export class ExpNodeComponent {
 
     const expNodeComponent: Element = document.createElement('div');
     expNodeComponent.id = id;
-    expNodeComponent.classList.add('exp-node-container');
+    expNodeComponent.classList.add(ClassNames.CONTAINER);
     expNodeComponent.innerHTML = `
     <div class="row">
       <div class="col s6 exp-node-first-lvl-col">
@@ -98,27 +99,27 @@ export class ExpNodeComponent {
       <div class="col s6 exp-node-second-lvl-col exp-node-children"></div>
     </div>`;
 
+    this.containerEl.appendChild(expNodeComponent);
+
     if (Utils.arrayNotEmpty(childNodes)) {
       this.enableChildrenActions(expNodeComponent);
       this.renderChildNodes(expNodeComponent);
     }
-
-    this.containerEl.appendChild(expNodeComponent);
-
     if (enableEditBtn) {
       this.registerEditBtnClickListener(expNodeComponent);
     }
     this.registerDeleteBtnClickListener(expNodeComponent);
     this.registerSelectClickListener(expNodeComponent);
   }
+
   /**
-   * Enables children actions for a given expandable node.
+   * Enables children actions for a given node.
    *
-   * @param expNodeComponent A expandable node which should have children actions enabled.
+   * @param expNodeComponent Node which should have children actions enabled.
    */
   private enableChildrenActions(expNodeComponent: Element): void {
     const childrenActionsContainerEl = expNodeComponent.querySelector(
-      '.exp-node-children-actions-wrapper'
+      Selectors.CHILDREN_ACTIONS_WRAPPER
     );
     if (childrenActionsContainerEl !== null) {
       childrenActionsContainerEl.innerHTML = `<div class="z-depth-1 exp-node-children-actions">
@@ -129,14 +130,14 @@ export class ExpNodeComponent {
   }
 
   /**
-   * Renders children nodes of an expandable node.
+   * Renders children nodes of a node.
    *
-   * @param expNodeComponent An expandable node which children should be rendered out.
+   * @param expNodeComponent Node which children should be rendered out.
    */
   private renderChildNodes(expNodeComponent: Element): void {
     const { childNodes = [] } = this.node;
     const childrenContainerEl = expNodeComponent.querySelector(
-      '.exp-node-children'
+      Selectors.CHILDREN
     );
     if (childrenContainerEl !== null) {
       childNodes.forEach(childNode =>
@@ -153,22 +154,22 @@ export class ExpNodeComponent {
   /**
    * Registers an event listener for the children action button to show/collapse the children nodes.
    *
-   * @param expNodeComponent An expandable node for which the expand button should be registered.
+   * @param expNodeComponent Node for which the expand button should be registered.
    */
   private registerExpandBtnClickListener(expNodeComponent: Element): void {
-    const expandBtnEl = expNodeComponent.querySelector('.exp-node-expand-btn');
+    const expandBtnEl = expNodeComponent.querySelector(Selectors.EXPAND_BTN);
     const childrenContainerEl = expNodeComponent.querySelector(
-      '.exp-node-children'
+      Selectors.CHILDREN
     );
 
     if (expandBtnEl !== null && childrenContainerEl !== null) {
       expandBtnEl.addEventListener('click', () => {
-        childrenContainerEl.classList.toggle('exp-node-hide');
+        childrenContainerEl.classList.toggle(ClassNames.HIDE);
 
         if (
           Utils.checkIfElementContainsClassName(
             childrenContainerEl,
-            'exp-node-hide'
+            ClassNames.HIDE
           )
         ) {
           expandBtnEl.innerHTML = '<i class="material-icons">expand_more</i>';
