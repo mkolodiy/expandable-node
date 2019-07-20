@@ -1,13 +1,17 @@
 {
   "name": "expandable-node",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A library for creating a tree like node structure.",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
   "module": "build/module/index.js",
   "repository": "https://github.com/mkolodiy/expandable-node",
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "typescript",
+    "expandable",
+    "node"
+  ],
   "scripts": {
     "describe": "npm-scripts-info",
     "build": "run-s clean && run-p build:*",
