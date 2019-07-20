@@ -2,6 +2,8 @@
 
 A library for creating a tree like node structure.
 
+![Basic configuration](docs/basic-configuration.png)
+
 ## Usage
 
 ### Options
@@ -77,7 +79,7 @@ ExpNode.create(options);
 
 Using the configuration above you will get the following output:
 
-![Basic configuration](docs/basic-configuration.png?raw=true 'Basic configuration')
+![Basic configuration](docs/basic-configuration.png)
 
 ## Full configuration
 
@@ -179,7 +181,7 @@ ExpNode.create(options);
 
 Using the configuration above you will get the following output:
 
-![Full configuration](docs/full-configuration.png?raw=true 'Full configuration')
+![Full configuration](docs/full-configuration.png)
 
 ## Technology used to build this library
 
