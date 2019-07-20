@@ -192,15 +192,15 @@ export class ExpNodeComponent {
   }
 
   /**
-   * Registers an event listener and enables the edit button for a given expandable node.
+   * Registers an event listener and enables the edit button for a given node.
    *
-   * @param expNodeComponent An expandable node for which the edit button should be registered.
+   * @param expNodeComponent Node for which the edit button should be registered.
    */
   private registerEditBtnClickListener(expNodeComponent: Element): void {
-    const editBtnEl = expNodeComponent.querySelector('.exp-node-edit-btn');
+    const editBtnEl = expNodeComponent.querySelector(Selectors.EDIT_BTN);
 
     if (editBtnEl != null) {
-      editBtnEl.classList.remove('exp-node-hide');
+      editBtnEl.classList.remove(ClassNames.HIDE);
       editBtnEl.addEventListener('click', () => {
         if (Utils.checkIfObjectHasProperty(this.callbacks, 'editBtnCb')) {
           const { editBtnCb } = this.callbacks!;
@@ -217,12 +217,12 @@ export class ExpNodeComponent {
   }
 
   /**
-   * Registers an event listener and enables the edit button for a given expandable node.
+   * Registers an event listener and enables the edit button for a given node.
    *
-   * @param expNodeComponent An expandable node for which the edit button should be registered.
+   * @param expNodeComponent Node for which the edit button should be registered.
    */
   private registerDeleteBtnClickListener(expNodeComponent: Element): void {
-    const deleteBtnEl = expNodeComponent.querySelector('.exp-node-delete-btn');
+    const deleteBtnEl = expNodeComponent.querySelector(Selectors.DELETE_BTN);
     const parentEl = (expNodeComponent as HTMLElement).parentElement;
 
     if (deleteBtnEl != null && parentEl != null) {
@@ -243,20 +243,20 @@ export class ExpNodeComponent {
   }
 
   /**
-   * Registers an event listener for the selection of a expandable node.
+   * Registers an event listener for the selection of a node.
    *
-   * @param expNodeComponent An expandable node for which the edit button should be registered.
+   * @param expNodeComponent Node for which the edit button should be registered.
    */
   private registerSelectClickListener(expNodeComponent: Element): void {
-    const shapeEl = expNodeComponent.querySelector('.exp-node-shape');
+    const shapeEl = expNodeComponent.querySelector(Selectors.SHAPE);
     const shapeSelectionEl = expNodeComponent.querySelector(
-      '.exp-node-shape-selection'
+      Selectors.SHAPE_SELECTION
     );
 
     if (shapeEl != null && shapeSelectionEl != null) {
       shapeEl.addEventListener('click', () => {
         Utils.removeSelectionFromAllShapes();
-        shapeSelectionEl.classList.add('z-depth-1');
+        shapeSelectionEl.classList.add(ClassNames.Z_DEPTH_1);
         if (Utils.checkIfObjectHasProperty(this.callbacks, 'selectCb')) {
           const { selectCb } = this.callbacks!;
           if (Utils.isDefined(selectCb)) {
