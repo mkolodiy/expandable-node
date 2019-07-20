@@ -1,2 +1,2 @@
 import 'materialize-css';
-export * from './lib/index';
+export * from './lib/lib';

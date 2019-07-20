@@ -1,4 +1,4 @@
-import { ExpNodeComponent } from './exp-node-component';
+import { ExpNodeComponent } from './component';
 import { Options } from './models';
 import { Utils } from './utils';
 import { ClassNames, Errors } from './variables';

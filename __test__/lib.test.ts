@@ -1,5 +1,5 @@
 // tslint:disable:no-expression-statement
-import { ExpNode } from '../src/lib/exp-node';
+import { ExpNode } from '../src/lib/lib';
 import { Options } from '../src/lib/models';
 import { Errors, Selectors } from '../src/lib/variables';
 
