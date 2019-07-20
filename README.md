@@ -2,7 +2,9 @@
 
 A library for creating a tree like node structure.
 
-![Basic configuration](docs/basic-configuration.png)
+<div align="left">
+    <img src="/docs/basic-configuration.png" />
+</div>
 
 ## Usage
 
