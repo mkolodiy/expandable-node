@@ -1,62 +1,63 @@
 // tslint:disable:no-expression-statement
 import { ExpNode } from '../src/lib/exp-node';
 import { Options } from '../src/lib/models';
+import { ClassNames, Selectors } from '../src/lib/variables';
 
 afterEach(() => {
   document.body.querySelector('#someContainerId')!.remove();
 });
 
-test('expandable node element should be added to the wrapper element', () => {
+test('node element should be added to the wrapper element', () => {
   const wrapperEl = createExpNode(createOptions1());
-  const expNodeContainerEl = wrapperEl.querySelector('.exp-node-container');
-  expect(expNodeContainerEl).toBeDefined();
-  expect(expNodeContainerEl).not.toBeNull();
-  expect(expNodeContainerEl!.id).toBe('node01');
-  const description = expNodeContainerEl!
+  const containerEl = wrapperEl.querySelector(Selectors.CONTAINER);
+  expect(containerEl).toBeDefined();
+  expect(containerEl).not.toBeNull();
+  expect(containerEl!.id).toBe('node01');
+  const description = containerEl!
     .querySelector('.exp-node-desc')!
     .innerHTML.trim();
   expect(description).toBe('Level 1 node.');
 });
 
-test('expandable node element should have expand button', () => {
+test('node element should have expand button', () => {
   const wrapperEl = createExpNode(createOptions2());
-  const expNodeChildrenActionsWrapper = wrapperEl.querySelector(
-    '.exp-node-children-actions-wrapper'
+  const childrenActionsWrapper = wrapperEl.querySelector(
+    Selectors.CHILDREN_ACTIONS_WRAPPER
   );
-  expect(expNodeChildrenActionsWrapper).toBeDefined();
-  expect(expNodeChildrenActionsWrapper).not.toBeNull();
-  const expNodeExpandBtn = expNodeChildrenActionsWrapper!.querySelector(
-    '.exp-node-expand-btn'
+  expect(childrenActionsWrapper).toBeDefined();
+  expect(childrenActionsWrapper).not.toBeNull();
+  const expNodeExpandBtn = childrenActionsWrapper!.querySelector(
+    Selectors.EXPAND_BTN
   );
   expect(expNodeExpandBtn).toBeDefined();
   expect(expNodeExpandBtn).not.toBeNull();
 });
 
-test('expand button functionality of a expandable node', () => {
-  const options: Options = createOptions2();
+test('expand button functionality of a node', () => {
+  const options = createOptions2();
   const expandBtnCbSpy = jest.spyOn(options.callbacks!, 'expandBtnCb');
 
   const wrapperEl = createExpNode(options);
-  const expNodeChildrenActionsWrapper = wrapperEl.querySelector(
-    '.exp-node-children-actions-wrapper'
+  const childrenActionsWrapper = wrapperEl.querySelector(
+    Selectors.CHILDREN_ACTIONS_WRAPPER
   );
-  expect(expNodeChildrenActionsWrapper).toBeDefined();
-  expect(expNodeChildrenActionsWrapper).not.toBeNull();
-  const expNodeExpandBtn = expNodeChildrenActionsWrapper!.querySelector(
-    '.exp-node-expand-btn'
+  expect(childrenActionsWrapper).toBeDefined();
+  expect(childrenActionsWrapper).not.toBeNull();
+  const expandBtnEl = childrenActionsWrapper!.querySelector(
+    Selectors.EXPAND_BTN
   );
-  expect(expNodeExpandBtn).toBeDefined();
-  expect(expNodeExpandBtn).not.toBeNull();
-  const childrenContainerEl = wrapperEl.querySelector('.exp-node-children');
+  expect(expandBtnEl).toBeDefined();
+  expect(expandBtnEl).not.toBeNull();
+  const childrenContainerEl = wrapperEl.querySelector(Selectors.CHILDREN);
   expect(childrenContainerEl).toBeDefined();
   expect(childrenContainerEl).not.toBeNull();
 
   // Collapse child nodes
-  (expNodeExpandBtn as HTMLElement).click();
-  expect(childrenContainerEl!.classList.contains('exp-node-hide')).toBeTruthy();
-  expect(
-    expNodeExpandBtn!.querySelector('.material-icons')!.innerHTML.trim()
-  ).toBe('expand_more');
+  (expandBtnEl as HTMLElement).click();
+  expect(childrenContainerEl!.classList.contains(ClassNames.HIDE)).toBeTruthy();
+  expect(expandBtnEl!.querySelector('.material-icons')!.innerHTML.trim()).toBe(
+    'expand_more'
+  );
   expect(expandBtnCbSpy).toHaveBeenCalled();
   expect(expandBtnCbSpy).toHaveReturned();
   expect(expandBtnCbSpy).toHaveReturnedWith(
@@ -64,11 +65,11 @@ test('expand button functionality of a expandable node', () => {
   );
 
   // Expand child nodes
-  (expNodeExpandBtn as HTMLElement).click();
-  expect(childrenContainerEl!.classList.contains('exp-node-hide')).toBeFalsy();
-  expect(
-    expNodeExpandBtn!.querySelector('.material-icons')!.innerHTML.trim()
-  ).toBe('expand_less');
+  (expandBtnEl as HTMLElement).click();
+  expect(childrenContainerEl!.classList.contains(ClassNames.HIDE)).toBeFalsy();
+  expect(expandBtnEl!.querySelector('.material-icons')!.innerHTML.trim()).toBe(
+    'expand_less'
+  );
   expect(expandBtnCbSpy).toHaveBeenCalled();
   expect(expandBtnCbSpy).toHaveReturned();
   expect(expandBtnCbSpy).toHaveReturnedWith(
@@ -76,23 +77,21 @@ test('expand button functionality of a expandable node', () => {
   );
 });
 
-test('expandable node should contain children nodes', () => {
+test('node should contain children nodes', () => {
   const wrapperEl = createExpNode(createOptions2());
-  const expNodeChildrenEl = wrapperEl.querySelector('.exp-node-children');
+  const expNodeChildrenEl = wrapperEl.querySelector(Selectors.CHILDREN);
   expect(expNodeChildrenEl).toBeDefined();
   expect(expNodeChildrenEl).not.toBeNull();
-  const childrenEls = expNodeChildrenEl!.querySelectorAll(
-    '.exp-node-container'
-  );
+  const childrenEls = expNodeChildrenEl!.querySelectorAll(Selectors.CONTAINER);
   expect(childrenEls.length).toBe(2);
 });
 
-test('edit button functionality of an expandable node', () => {
-  const options: Options = createOptions2();
+test('edit button functionality of a node', () => {
+  const options = createOptions2();
   const editBtnCbSpy = jest.spyOn(options.callbacks!, 'editBtnCb');
 
   const wrapperEl = createExpNode(options);
-  const editBtnEl = wrapperEl.querySelector('.exp-node-edit-btn');
+  const editBtnEl = wrapperEl.querySelector(Selectors.EDIT_BTN);
   expect(editBtnEl).toBeDefined();
   expect(editBtnEl).not.toBeNull();
   (editBtnEl as HTMLElement).click();
@@ -103,13 +102,13 @@ test('edit button functionality of an expandable node', () => {
   );
 });
 
-test('select functionality of an expandable node', () => {
-  const options: Options = createOptions2();
+test('select functionality of a node', () => {
+  const options = createOptions2();
   const selectBtnCbSpy = jest.spyOn(options.callbacks!, 'selectCb');
 
   const wrapperEl = createExpNode(options);
-  const shapeEl = wrapperEl.querySelector('.exp-node-shape');
-  const shapeSelectionEl = wrapperEl.querySelector('.exp-node-shape-selection');
+  const shapeEl = wrapperEl.querySelector(Selectors.SHAPE);
+  const shapeSelectionEl = wrapperEl.querySelector(Selectors.SHAPE_SELECTION);
   expect(shapeEl).toBeDefined();
   expect(shapeEl).not.toBeNull();
   expect(shapeSelectionEl).toBeDefined();
@@ -123,15 +122,15 @@ test('select functionality of an expandable node', () => {
   expect(shapeSelectionEl!.classList.contains('z-depth-1')).toBeTruthy();
 });
 
-test('delete button functionality of an expandable node', () => {
-  const options: Options = createOptions2();
+test('delete button functionality of a node', () => {
+  const options = createOptions2();
   const deleteBtnCbSpy = jest.spyOn(options.callbacks!, 'deleteBtnCb');
 
   const wrapperEl = createExpNode(options);
-  const containerEl = wrapperEl.querySelector('.exp-node-container');
+  const containerEl = wrapperEl.querySelector(Selectors.CONTAINER);
   expect(containerEl).toBeDefined();
   expect(containerEl).not.toBeNull();
-  const deleteBtnEl = wrapperEl.querySelector('.exp-node-delete-btn');
+  const deleteBtnEl = wrapperEl.querySelector(Selectors.DELETE_BTN);
   expect(deleteBtnEl).toBeDefined();
   expect(deleteBtnEl).not.toBeNull();
 
@@ -142,13 +141,13 @@ test('delete button functionality of an expandable node', () => {
     `Node clicked: ${options.nodes[0].id}`
   );
 
-  const containerEls = wrapperEl.querySelectorAll('.exp-node-container');
+  const containerEls = wrapperEl.querySelectorAll(Selectors.CONTAINER);
   expect(containerEls.length).toBe(0);
 });
 
-test('expandable node should have a type', () => {
+test('node should have a type', () => {
   const wrapperEl = createExpNode(createOptions2());
-  const shapeEl = wrapperEl.querySelector('.exp-node-shape');
+  const shapeEl = wrapperEl.querySelector(Selectors.SHAPE);
   expect(shapeEl).toBeDefined();
   expect(shapeEl).not.toBeNull();
   expect(shapeEl!.classList.contains('test-class')).toBeTruthy();
@@ -217,7 +216,7 @@ const createExpNode = (options: Options): Element => {
   const expNode: ExpNode = ExpNode.create(options);
   expect(expNode).toBeDefined();
   expect(expNode).toBeInstanceOf(ExpNode);
-  const wrapperEl = containerEl.querySelector('.exp-node-wrapper');
+  const wrapperEl = containerEl.querySelector(Selectors.WRAPPER);
   expect(wrapperEl).toBeDefined();
   expect(wrapperEl).not.toBeNull();
   return wrapperEl!;

@@ -1,7 +1,7 @@
 // tslint:disable:no-expression-statement
 import { Node, NodeCallbacks, NodeType } from '../src/lib/models';
 import { Utils } from '../src/lib/utils';
-import { Errors } from '../src/lib/variables';
+import { ClassNames, Errors, Selectors } from '../src/lib/variables';
 
 test('checkIfElementContainsClassName', () => {
   const element: Element = document.createElement('div');
@@ -16,7 +16,7 @@ test('checkIfElementContainsClassName', () => {
 
 describe('removeSelectionFromAllShapes', () => {
   afterEach(() => {
-    const wrapperEl = document.body.querySelector('.exp-node-wrapper');
+    const wrapperEl = document.body.querySelector(Selectors.WRAPPER);
     if (wrapperEl != null) {
       document.body.removeChild(wrapperEl);
     }
@@ -43,7 +43,7 @@ describe('removeSelectionFromAllShapes', () => {
 
   const createSelectionEl = (): Element => {
     const selectionEl: Element = document.createElement('div');
-    selectionEl.classList.add('exp-node-shape-selection');
+    selectionEl.classList.add(ClassNames.SHAPE_SELECTION);
     selectionEl.classList.add('z-depth-1');
     return selectionEl;
   };

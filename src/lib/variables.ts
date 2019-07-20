@@ -32,8 +32,7 @@ export const ClassNames = {
   HIDE: 'exp-node-hide',
   SHAPE_SELECTION: 'exp-node-shape-selection',
   SHAPE: 'exp-node-shape',
-  WRAPPER: 'exp-node-wrapper',
-  Z_DEPTH_1: 'z-depth-1'
+  WRAPPER: 'exp-node-wrapper'
 };
 
 /**

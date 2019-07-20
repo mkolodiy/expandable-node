@@ -1,49 +1,45 @@
 // tslint:disable:no-expression-statement
 import { ExpNode } from '../src/lib/exp-node';
 import { Options } from '../src/lib/models';
-import { Errors } from '../src/lib/variables';
+import { Errors, Selectors } from '../src/lib/variables';
 
 test('container element can be found using id', () => {
-  const containerEl: Element = createContainerElWithId();
+  const containerEl = createContainerElWithId();
   expect(containerEl).toBeDefined();
-  const options: Options = createMinimalOptions();
-  const expNode = ExpNode.create(options);
+  const expNode = ExpNode.create(createMinimalOptions());
   expect(expNode).toBeDefined();
   expect(expNode).toBeInstanceOf(ExpNode);
   containerEl.remove();
 });
 
 test('container element can be found using id', () => {
-  const containerEl: Element = createContainerElWithClass();
+  const containerEl = createContainerElWithClass();
   expect(containerEl).toBeDefined();
-  const options: Options = createMinimalOptions();
-  const expNode: ExpNode = ExpNode.create(options);
+  const expNode = ExpNode.create(createMinimalOptions());
   expect(expNode).toBeDefined();
   expect(expNode).toBeInstanceOf(ExpNode);
   containerEl.remove();
 });
 
 test('container element can not be found', () => {
-  const options: Options = createMinimalOptions();
-  const error = () => ExpNode.create(options);
+  const error = () => ExpNode.create(createMinimalOptions());
   expect(error).toThrowError(Errors.CONTAINER_NOT_FOUND);
 });
 
 test('wrapper element is created and appended to container element', () => {
-  const containerEl: Element = createContainerElWithClass();
+  const containerEl = createContainerElWithClass();
   expect(containerEl).toBeDefined();
-  const options: Options = createMinimalOptions();
-  const expNode = ExpNode.create(options);
+  const expNode = ExpNode.create(createMinimalOptions());
   expect(expNode).toBeDefined();
   expect(expNode).toBeInstanceOf(ExpNode);
-  const wrapperEl: Element | null = document.querySelector('.exp-node-wrapper');
+  const wrapperEl = document.querySelector(Selectors.WRAPPER);
   expect(wrapperEl).toBeDefined();
   expect(wrapperEl).not.toBeNull();
   containerEl.remove();
 });
 
 test('nodes array is empty', () => {
-  const containerEl: Element = createContainerElWithClass();
+  const containerEl = createContainerElWithClass();
   expect(containerEl).toBeDefined();
   const options: any = {
     container: 'someContainerId'

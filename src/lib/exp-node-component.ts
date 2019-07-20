@@ -256,7 +256,7 @@ export class ExpNodeComponent {
     if (shapeEl != null && shapeSelectionEl != null) {
       shapeEl.addEventListener('click', () => {
         Utils.removeSelectionFromAllShapes();
-        shapeSelectionEl.classList.add(ClassNames.Z_DEPTH_1);
+        shapeSelectionEl.classList.add('z-depth-1');
         if (Utils.checkIfObjectHasProperty(this.callbacks, 'selectCb')) {
           const { selectCb } = this.callbacks!;
           if (Utils.isDefined(selectCb)) {
