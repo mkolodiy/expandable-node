@@ -2,7 +2,11 @@
 
 A library for creating a tree like node structure.
 
+<center>
+
 ![Basic configuration](https://github.com/mkolodiy/expandable-node/blob/master/docs/basic-configuration.PNG)
+
+</center>
 
 ## Usage
 
@@ -79,7 +83,11 @@ ExpNode.create(options);
 
 Using the configuration above you will get the following output:
 
-![Basic configuration](docs/basic-configuration.png)
+<center>
+
+![Basic configuration](https://github.com/mkolodiy/expandable-node/blob/master/docs/basic-configuration.PNG)
+
+</center>
 
 ## Full configuration
 
@@ -181,7 +189,11 @@ ExpNode.create(options);
 
 Using the configuration above you will get the following output:
 
-![Full configuration](docs/full-configuration.png)
+<center>
+
+![Full configuration](https://github.com/mkolodiy/expandable-node/blob/master/docs/full-configuration.PNG)
+
+</center>
 
 ## Technology used to build this library
 
