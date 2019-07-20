@@ -2,9 +2,7 @@
 
 A library for creating a tree like node structure.
 
-<div align="left">
-    <img src="/docs/basic-configuration.png" />
-</div>
+![Basic configuration](https://github.com/mkolodiy/expandable-node/blob/master/docs/basic-configuration.PNG)
 
 ## Usage
 
