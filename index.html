@@ -1,0 +1,429 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>expandable-node</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">expandable-node</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> expandable-node</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="expandable-node">expandable-node</h1>
+				<p>A library for creating a tree like node structure.</p>
+				<p><img src="https://github.com/mkolodiy/expandable-node/blob/master/docs/basic-configuration.PNG" alt="Basic configuration"></p>
+				<h2 id="usage">Usage</h2>
+				<h3 id="options">Options</h3>
+				<p>Object containing values needed for creating a new node.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th align="center">Optional</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>container</td>
+							<td align="center">&#10062;</td>
+							<td>Defines id or class of a HTML element which should be used to create a new node.</td>
+						</tr>
+						<tr>
+							<td>callbacks</td>
+							<td align="center">&#9989;</td>
+							<td>Defines an object containing callbacks for all buttons defined for a node.</td>
+						</tr>
+						<tr>
+							<td>types</td>
+							<td align="center">&#9989;</td>
+							<td>Defines an array of types that can be used for a node.</td>
+						</tr>
+						<tr>
+							<td>nodes</td>
+							<td align="center">&#10062;</td>
+							<td>Defines an array of nodes.</td>
+						</tr>
+				</tbody></table>
+				<h3 id="callbacks">Callbacks</h3>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th align="center">Optional</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>deleteBtnCb</td>
+							<td align="center">&#9989;</td>
+							<td>Defines a callback function for the delete button.</td>
+						</tr>
+						<tr>
+							<td>editBtnCb</td>
+							<td align="center">&#9989;</td>
+							<td>Defines a callback function for the edit button.</td>
+						</tr>
+						<tr>
+							<td>expandBtnCb</td>
+							<td align="center">&#9989;</td>
+							<td>Defines a callback function for the expand button.</td>
+						</tr>
+						<tr>
+							<td>selectCb</td>
+							<td align="center">&#9989;</td>
+							<td>Defines a callback function for the selection of a node.</td>
+						</tr>
+				</tbody></table>
+				<h3 id="types">Types</h3>
+				<p>Array containing type objects that might be used in a node.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th align="center">Optional</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>type</td>
+							<td align="center">&#10062;</td>
+							<td>Defines the name of the type.</td>
+						</tr>
+						<tr>
+							<td>cssClass</td>
+							<td align="center">&#10062;</td>
+							<td>Defines a css class that should be appended to a expendable node.</td>
+						</tr>
+				</tbody></table>
+				<h3 id="nodes">Nodes</h3>
+				<p>Array containing node objects that should be displayed in the provided container.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th align="center">Optional</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>id</td>
+							<td align="center">&#10062;</td>
+							<td>Defines a unique id of a node.</td>
+						</tr>
+						<tr>
+							<td>description</td>
+							<td align="center">&#10062;</td>
+							<td>Defines a description of a node.</td>
+						</tr>
+						<tr>
+							<td>enableEditBtn</td>
+							<td align="center">&#9989;</td>
+							<td>Defines if the edit button should be shown for a node.</td>
+						</tr>
+						<tr>
+							<td>type</td>
+							<td align="center">&#9989;</td>
+							<td>Defines the name of the type.</td>
+						</tr>
+						<tr>
+							<td>childNodes</td>
+							<td align="center">&#9989;</td>
+							<td>Defines an array of child nodes that a node might contain.</td>
+						</tr>
+				</tbody></table>
+				<h2 id="basic-configuration">Basic configuration</h2>
+				<p>Following code snippet shows a simple configuration:</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> { ExpNode } <span class="hljs-keyword">from</span> <span class="hljs-string">'./expandable-node'</span>;
+
+<span class="hljs-keyword">const</span> options = {
+  <span class="hljs-attr">container</span>: <span class="hljs-string">'container'</span>,
+  <span class="hljs-attr">nodes</span>: [
+    {
+      <span class="hljs-attr">id</span>: <span class="hljs-string">'node01'</span>,
+      <span class="hljs-attr">description</span>: <span class="hljs-string">'Level 1 node.'</span>,
+      <span class="hljs-attr">childNodes</span>: [
+        {
+          <span class="hljs-attr">id</span>: <span class="hljs-string">'node01-childNode01'</span>,
+          <span class="hljs-attr">description</span>: <span class="hljs-string">'Level 2 node.'</span>
+        },
+        {
+          <span class="hljs-attr">id</span>: <span class="hljs-string">'node01-childNode02'</span>,
+          <span class="hljs-attr">description</span>: <span class="hljs-string">'Level 2 node.'</span>
+        }
+      ]
+    }
+  ]
+};
+
+ExpNode.create(options);</code></pre>
+				<p>Using the configuration above you will get the following output:</p>
+				<p><img src="https://github.com/mkolodiy/expandable-node/blob/master/docs/basic-configuration.PNG" alt="Basic configuration"></p>
+				<h2 id="full-configuration">Full configuration</h2>
+				<p>Following code snippets shows a full configuration:</p>
+				<pre><code class="language-scss"><span class="hljs-selector-class">.green-node</span> {
+  <span class="hljs-attribute">background-image</span>: none;
+  <span class="hljs-attribute">background-color</span>: green;
+}
+
+<span class="hljs-selector-class">.magenta-node</span> {
+  <span class="hljs-attribute">background-image</span>: none;
+  <span class="hljs-attribute">background-color</span>: magenta;
+}</code></pre>
+				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> { ExpNode } <span class="hljs-keyword">from</span> <span class="hljs-string">'./expandable-node'</span>;
+
+<span class="hljs-keyword">const</span> editBtnCb = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">node</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'editBtnCb'</span>);
+  <span class="hljs-built_in">console</span>.log(node);
+};
+
+<span class="hljs-keyword">const</span> deleteBtnCb = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">node</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'deleteBtnCb'</span>);
+  <span class="hljs-built_in">console</span>.log(node);
+};
+
+<span class="hljs-keyword">const</span> expandBtnCb = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">node</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'expandBtnCb'</span>);
+  <span class="hljs-built_in">console</span>.log(node);
+};
+
+<span class="hljs-keyword">const</span> selectCb = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">node</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'selectCb'</span>);
+  <span class="hljs-built_in">console</span>.log(node);
+};
+
+<span class="hljs-keyword">const</span> options = {
+  <span class="hljs-attr">container</span>: <span class="hljs-string">'container'</span>,
+  <span class="hljs-attr">callbacks</span>: {
+    <span class="hljs-attr">editBtnCb</span>: editBtnCb,
+    <span class="hljs-attr">deleteBtnCb</span>: deleteBtnCb,
+    <span class="hljs-attr">expandBtnCb</span>: expandBtnCb,
+    <span class="hljs-attr">selectCb</span>: selectCb
+  },
+  <span class="hljs-attr">types</span>: [
+    {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">'greenNode'</span>,
+      <span class="hljs-attr">cssClass</span>: <span class="hljs-string">'green-node'</span>
+    },
+    {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">'magentaNode'</span>,
+      <span class="hljs-attr">cssClass</span>: <span class="hljs-string">'magenta-node'</span>
+    }
+  ],
+  <span class="hljs-attr">nodes</span>: [
+    {
+      <span class="hljs-attr">id</span>: <span class="hljs-string">'node01'</span>,
+      <span class="hljs-attr">description</span>: <span class="hljs-string">'Level 1 node.'</span>,
+      <span class="hljs-attr">enableEditBtn</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">type</span>: <span class="hljs-string">'greenNode'</span>,
+      <span class="hljs-attr">childNodes</span>: [
+        {
+          <span class="hljs-attr">id</span>: <span class="hljs-string">'node01-childNode01'</span>,
+          <span class="hljs-attr">description</span>: <span class="hljs-string">'Level 2 node.'</span>,
+          <span class="hljs-attr">enableEditBtn</span>: <span class="hljs-literal">true</span>,
+          <span class="hljs-attr">type</span>: <span class="hljs-string">'magentaNode'</span>,
+          <span class="hljs-attr">childNodes</span>: [
+            {
+              <span class="hljs-attr">id</span>: <span class="hljs-string">'node01-childNode01-childNode01'</span>,
+              <span class="hljs-attr">description</span>: <span class="hljs-string">'Level 3 node.'</span>,
+              <span class="hljs-attr">enableEditBtn</span>: <span class="hljs-literal">true</span>,
+              <span class="hljs-attr">type</span>: <span class="hljs-string">'greenNode'</span>
+            }
+          ]
+        },
+        {
+          <span class="hljs-attr">id</span>: <span class="hljs-string">'node01-childNode02'</span>,
+          <span class="hljs-attr">description</span>: <span class="hljs-string">'Level 2 node.'</span>,
+          <span class="hljs-attr">enableEditBtn</span>: <span class="hljs-literal">true</span>,
+          <span class="hljs-attr">type</span>: <span class="hljs-string">'magentaNode'</span>
+        }
+      ]
+    },
+    {
+      <span class="hljs-attr">id</span>: <span class="hljs-string">'node02'</span>,
+      <span class="hljs-attr">description</span>: <span class="hljs-string">'Level 1 node.'</span>,
+      <span class="hljs-attr">enableEditBtn</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">type</span>: <span class="hljs-string">'greenNode'</span>
+    }
+  ]
+};
+
+ExpNode.create(options);</code></pre>
+				<p>Using the configuration above you will get the following output:</p>
+				<p><img src="https://github.com/mkolodiy/expandable-node/blob/master/docs/full-configuration.PNG" alt="Full configuration"></p>
+				<h2 id="technology-used-to-build-this-library">Technology used to build this library</h2>
+				<ul>
+					<li>TypeScript Starter (<a href="https://github.com/bitjson/typescript-starter/blob/master/LICENSE">License</a>)</li>
+					<li>MaterializeCSS (<a href="https://github.com/Dogfalo/materialize/blob/v1-dev/LICENSE">License</a>)</li>
+					<li>Material design icons (<a href="https://github.com/google/material-design-icons/blob/master/LICENSE">License</a>)</li>
+				</ul>
+				<h2 id="license">License</h2>
+				<p>Released under MIT license.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/expnode.html" class="tsd-kind-icon">Exp<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/expnodecomponent.html" class="tsd-kind-icon">Exp<wbr>Node<wbr>Component</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/utils.html" class="tsd-kind-icon">Utils</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/node.html" class="tsd-kind-icon">Node</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/nodecallbacks.html" class="tsd-kind-icon">Node<wbr>Callbacks</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/nodetype.html" class="tsd-kind-icon">Node<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/options.html" class="tsd-kind-icon">Options</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#classnames" class="tsd-kind-icon">Class<wbr>Names</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#errors" class="tsd-kind-icon">Errors</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#selectors" class="tsd-kind-icon">Selectors</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
