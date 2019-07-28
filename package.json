@@ -2,9 +2,9 @@
   "name": "expandable-node",
   "version": "1.0.0",
   "description": "A library for creating a tree like node structure.",
-  "main": "build/main/index.js",
-  "typings": "build/main/index.d.ts",
-  "module": "build/module/index.js",
+  "main": "dist/expandable-node.umd.js",
+  "module": "dist/expandable-node.es5.js",
+  "typings": "dist/types/expandable-node.d.ts",
   "repository": "https://github.com/mkolodiy/expandable-node",
   "license": "MIT",
   "keywords": [
@@ -15,9 +15,7 @@
   "scripts": {
     "describe": "npm-scripts-info",
     "build": "run-s clean && run-p build:*",
-    "build:main": "tsc -p tsconfig.json",
-    "build:module": "tsc -p tsconfig.module.json",
-    "build:css": "node-sass --include-path src/assets src/assets/index.scss build/assets/index.css",
+    "build:main": "rollup -c config/rollup.config.prod.ts && rollup -c config/rollup.config.dev.ts && trash dist/expandable-node.es5.css",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.ts\" --write",
     "fix:tslint": "tslint --fix --project .",
@@ -31,7 +29,7 @@
     "doc:json": "typedoc src/ --exclude **/*.spec.ts --target ES6 --mode file --json build/docs/typedoc.json",
     "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d build/docs",
     "version": "standard-version",
-    "clean": "trash build test coverage",
+    "clean": "trash dist test coverage",
     "prepare-release": "run-s all version doc:publish"
   },
   "scripts-info": {
@@ -70,7 +68,18 @@
     "tslint-config-prettier": "^1.17.0",
     "tslint-immutable": "^5.0.0",
     "typedoc": "^0.14.2",
-    "typescript": "^3.1.6"
+    "typescript": "^3.1.6",
+    "rollup": "^1.17.0",
+    "rollup-plugin-commonjs": "^10.0.1",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-sass": "^1.2.2",
+    "rollup-plugin-scss": "^1.0.1",
+    "rollup-plugin-sourcemaps": "^0.4.2",
+    "rollup-plugin-terser": "^5.1.1",
+    "rollup-plugin-typescript2": "^0.22.1",
+    "rollup-plugin-uglify": "^6.0.2"
   },
   "config": {
     "commitizen": {
