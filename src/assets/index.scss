@@ -1,5 +1,4 @@
 @import '~materialize-css/dist/css/materialize.min.css';
-//@import '~material-design-icons/iconfont/material-icons.css';
 
 .exp-node-wrapper {
   width: 100%;
@@ -88,4 +87,48 @@
 
 .exp-node-hide {
   display: none;
+}
+
+.exp-node-delete-btn-icon {
+  height: 100%;
+  width: 100%;
+  background-size: auto 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('icons/baseline-delete-24px.svg');
+  padding: 10px;
+  cursor: pointer;
+}
+
+.exp-node-edit-btn-icon {
+  height: 100%;
+  width: 100%;
+  background-size: auto 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('icons/baseline-open_in_new-24px.svg');
+  padding: 10px;
+  cursor: pointer;
+}
+
+.exp-node-expand-less-btn-icon {
+  height: 100%;
+  width: 100%;
+  background-size: auto 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('icons/baseline-expand_less-24px.svg');
+  padding: 10px;
+  cursor: pointer;
+}
+
+.exp-node-expand-more-btn-icon {
+  height: 100%;
+  width: 100%;
+  background-size: auto 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('icons/baseline-expand_more-24px.svg');
+  padding: 10px;
+  cursor: pointer;
 }

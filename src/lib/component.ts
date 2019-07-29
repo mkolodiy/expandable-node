@@ -87,8 +87,8 @@ export class ExpNodeComponent {
       </div>
       <div class="col s6 exp-node-first-lvl-col">
         <div class="z-depth-1 exp-node-actions">
-          <a class="btn-floating waves-effect waves-light exp-node-btn exp-node-delete-btn"><i class="material-icons">delete</i></a>
-          <a class="btn-floating waves-effect waves-light exp-node-btn exp-node-edit-btn exp-node-hide"><i class="material-icons">open_in_new</i></a>
+          <a class="btn-floating waves-effect waves-light exp-node-btn exp-node-delete-btn"><i class="exp-node-delete-btn-icon"></i></a>
+          <a class="btn-floating waves-effect waves-light exp-node-btn exp-node-edit-btn exp-node-hide"><i class="exp-node-edit-btn-icon"></i></a>
         </div>
         <div class="z-depth-1 valign-wrapper exp-node-desc">
             ${description}
@@ -123,7 +123,7 @@ export class ExpNodeComponent {
     );
     if (childrenActionsContainerEl !== null) {
       childrenActionsContainerEl.innerHTML = `<div class="z-depth-1 exp-node-children-actions">
-          <a class="btn-floating waves-effect waves-light exp-node-btn exp-node-expand-btn"><i class="material-icons">expand_less</i></a>
+          <a class="btn-floating waves-effect waves-light exp-node-btn exp-node-expand-btn"><i class="exp-node-expand-less-btn-icon"></i></a>
         </div>`;
       this.registerExpandBtnClickListener(expNodeComponent);
     }
@@ -172,9 +172,9 @@ export class ExpNodeComponent {
             ClassNames.HIDE
           )
         ) {
-          expandBtnEl.innerHTML = '<i class="material-icons">expand_more</i>';
+          expandBtnEl.innerHTML = '<i class="exp-node-expand-more-btn-icon"></i>';
         } else {
-          expandBtnEl.innerHTML = '<i class="material-icons">expand_less</i>';
+          expandBtnEl.innerHTML = '<i class="exp-node-expand-less-btn-icon"></i>';
         }
 
         if (Utils.checkIfObjectHasProperty(this.callbacks, 'expandBtnCb')) {
