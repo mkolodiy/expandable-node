@@ -13,7 +13,7 @@
     "node"
   ],
   "scripts": {
-    "prebuild": "run-s clean",
+    "prebuild": "run-s clean fix",
     "build": "rollup -c rollup.config.ts",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.ts\" --write",

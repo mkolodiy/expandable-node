@@ -1,5 +1,16 @@
 @import '~materialize-css/dist/css/materialize.min.css';
 
+@mixin exp-node-btn($url) {
+  height: 100%;
+  width: 100%;
+  background-size: auto 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url($url);
+  padding: 10px;
+  cursor: pointer;
+}
+
 .exp-node-wrapper {
   width: 100%;
   height: 100%;
@@ -35,13 +46,13 @@
 }
 
 .exp-node-shape {
-  height: 100%;
-  width: 100%;
-  background-size: auto 90%;
+  height: 190px;
+  width: 190px;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   background-image: url('data:image/svg+xml;utf8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"><rect width="200" height="200" style="fill:grey;fill-opacity:0.5;" /></svg>');
-  padding: 10px;
+  margin: 5px;
   cursor: pointer;
 }
 
@@ -90,45 +101,17 @@
 }
 
 .exp-node-delete-btn-icon {
-  height: 100%;
-  width: 100%;
-  background-size: auto 70%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url('icons/baseline-delete-24px.svg');
-  padding: 10px;
-  cursor: pointer;
+  @include exp-node-btn('icons/baseline-delete-24px.svg');
 }
 
 .exp-node-edit-btn-icon {
-  height: 100%;
-  width: 100%;
-  background-size: auto 70%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url('icons/baseline-open_in_new-24px.svg');
-  padding: 10px;
-  cursor: pointer;
+  @include exp-node-btn('icons/baseline-open_in_new-24px.svg');
 }
 
 .exp-node-expand-less-btn-icon {
-  height: 100%;
-  width: 100%;
-  background-size: auto 70%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url('icons/baseline-expand_less-24px.svg');
-  padding: 10px;
-  cursor: pointer;
+  @include exp-node-btn('icons/baseline-expand_less-24px.svg');
 }
 
 .exp-node-expand-more-btn-icon {
-  height: 100%;
-  width: 100%;
-  background-size: auto 70%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url('icons/baseline-expand_more-24px.svg');
-  padding: 10px;
-  cursor: pointer;
+  @include exp-node-btn('icons/baseline-expand_more-24px.svg');
 }
