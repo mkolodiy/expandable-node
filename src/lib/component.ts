@@ -172,9 +172,11 @@ export class ExpNodeComponent {
             ClassNames.HIDE
           )
         ) {
-          expandBtnEl.innerHTML = '<i class="exp-node-expand-more-btn-icon"></i>';
+          expandBtnEl.innerHTML =
+            '<i class="exp-node-expand-more-btn-icon"></i>';
         } else {
-          expandBtnEl.innerHTML = '<i class="exp-node-expand-less-btn-icon"></i>';
+          expandBtnEl.innerHTML =
+            '<i class="exp-node-expand-less-btn-icon"></i>';
         }
 
         if (Utils.checkIfObjectHasProperty(this.callbacks, 'expandBtnCb')) {
