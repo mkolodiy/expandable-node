@@ -4,7 +4,9 @@
 
 A library for creating a tree like node structure.
 
-![Basic configuration](https://github.com/mkolodiy/expandable-node/blob/master/docs/basic-configuration.PNG)
+<p align="center">
+  <img src="docs/basic-configuration.PNG" alt="Basic configuration" />
+</p>
 
 ## Usage
 
@@ -81,7 +83,9 @@ ExpNode.create(options);
 
 Using the configuration above you will get the following output:
 
-![Basic configuration](https://github.com/mkolodiy/expandable-node/blob/master/docs/basic-configuration.PNG)
+<p align="center">
+  <img src="docs/basic-configuration.PNG" alt="Basic configuration" />
+</p>
 
 ## Full configuration
 
@@ -183,7 +187,9 @@ ExpNode.create(options);
 
 Using the configuration above you will get the following output:
 
-![Full configuration](https://github.com/mkolodiy/expandable-node/blob/master/docs/full-configuration.PNG)
+<p align="center">
+  <img src="docs/full-configuration.PNG" alt="Full configuration" />
+</p>
 
 ## Technology used to build this library
 

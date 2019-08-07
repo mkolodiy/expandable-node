@@ -5,7 +5,10 @@
   "main": "dist/js/expandable-node.umd.min.js",
   "module": "dist/js/expandable-node.es5.min.js",
   "typings": "dist/types/expandable-node.d.ts",
-  "repository": "https://github.com/mkolodiy/expandable-node",
+  "repository" : { 
+    "type" : "git",
+    "url" : "https://github.com/mkolodiy/expandable-node.git"
+  },
   "license": "MIT",
   "keywords": [
     "typescript",
