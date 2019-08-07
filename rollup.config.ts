@@ -8,6 +8,9 @@ import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 
 const pkg = require('./package.json');
+const license = require('rollup-plugin-license');
+
+const bannerText = `${pkg.name} ${pkg.version} ${pkg.license} | https://github.com/mkolodiy/expandable-node`;
 
 export default {
   input: 'src/index.ts',
@@ -37,15 +40,24 @@ export default {
     }),
     commonjs(),
     resolve(),
-    sourceMaps(),
     postcss({
       extract: `dist/css/${pkg.name}.min.css`,
       minimize: true,
       sourceMap: true,
-      plugins: [require('postcss-inline-svg')]
+      plugins: [
+        require('postcss-inline-svg'),
+        require('postcss-banner')({
+          banner: bannerText,
+          important: true
+        })
+      ]
     }),
     terser({
       include: [/^.+\.min\.js$/]
+    }),
+    sourceMaps(),
+    license({
+      banner: bannerText
     })
   ]
 };
