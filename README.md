@@ -2,6 +2,10 @@
 
 A library for creating a tree like node structure.
 
+```
+npm i expandable-node
+```
+
 <p align="center">
   <img src="docs/basic-configuration.PNG" alt="Basic configuration" />
 </p>
