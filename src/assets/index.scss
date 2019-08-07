@@ -6,7 +6,7 @@
   background-size: auto 70%;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url($url);
+  background-image: svg-load($url);
   padding: 10px;
   cursor: pointer;
 }
