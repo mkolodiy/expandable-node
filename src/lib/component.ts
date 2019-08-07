@@ -99,7 +99,21 @@ export class ExpNodeComponent {
       <div class="col s6 exp-node-second-lvl-col exp-node-children"></div>
     </div>`;
 
-    this.containerEl.appendChild(expNodeComponent);
+    if (
+      Utils.checkIfElementContainsClassName(
+        this.containerEl,
+        ClassNames.WRAPPER
+      )
+    ) {
+      this.containerEl.appendChild(expNodeComponent);
+    } else {
+      const childrenContainerEl = this.containerEl.querySelector(
+        Selectors.CHILDREN
+      );
+      if (childrenContainerEl !== null) {
+        childrenContainerEl.appendChild(expNodeComponent);
+      }
+    }
 
     if (Utils.arrayNotEmpty(childNodes)) {
       this.enableChildrenActions(expNodeComponent);
@@ -136,19 +150,14 @@ export class ExpNodeComponent {
    */
   private renderChildNodes(expNodeComponent: Element): void {
     const { childNodes = [] } = this.node;
-    const childrenContainerEl = expNodeComponent.querySelector(
-      Selectors.CHILDREN
+    childNodes.forEach(childNode =>
+      ExpNodeComponent.create(
+        childNode,
+        expNodeComponent,
+        this.callbacks,
+        this.types
+      )
     );
-    if (childrenContainerEl !== null) {
-      childNodes.forEach(childNode =>
-        ExpNodeComponent.create(
-          childNode,
-          childrenContainerEl,
-          this.callbacks,
-          this.types
-        )
-      );
-    }
   }
 
   /**
@@ -230,6 +239,22 @@ export class ExpNodeComponent {
     if (deleteBtnEl != null && parentEl != null) {
       deleteBtnEl.addEventListener('click', () => {
         parentEl.removeChild(expNodeComponent);
+
+        const childrenActionsContainerEl = this.containerEl.querySelector(
+          Selectors.CHILDREN_ACTIONS_WRAPPER
+        );
+        const childrenContainerEl = this.containerEl.querySelector(
+          Selectors.CHILDREN
+        );
+
+        if (
+          childrenActionsContainerEl != null &&
+          childrenContainerEl != null &&
+          childrenContainerEl.children.length === 0
+        ) {
+          childrenActionsContainerEl.innerHTML = '';
+        }
+
         if (Utils.checkIfObjectHasProperty(this.callbacks, 'deleteBtnCb')) {
           const { deleteBtnCb } = this.callbacks!;
           if (Utils.isDefined(deleteBtnCb)) {

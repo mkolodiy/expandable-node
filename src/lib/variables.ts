@@ -32,7 +32,9 @@ export const ClassNames = {
   HIDE: 'exp-node-hide',
   SHAPE_SELECTION: 'exp-node-shape-selection',
   SHAPE: 'exp-node-shape',
-  WRAPPER: 'exp-node-wrapper'
+  WRAPPER: 'exp-node-wrapper',
+  EXPAND_LESS_BTN: 'exp-node-expand-less-btn-icon',
+  EXPAND_MORE_BTN: 'exp-node-expand-more-btn-icon'
 };
 
 /**
@@ -47,5 +49,7 @@ export const Selectors = {
   EDIT_BTN: `.${ClassNames.EDIT_BTN}`,
   SHAPE_SELECTION: `.${ClassNames.SHAPE_SELECTION}`,
   SHAPE: `.${ClassNames.SHAPE}`,
-  WRAPPER: `.${ClassNames.WRAPPER}`
+  WRAPPER: `.${ClassNames.WRAPPER}`,
+  EXPAND_LESS_BTN: `.${ClassNames.EXPAND_LESS_BTN}`,
+  EXPAND_MORE_BTN: `.${ClassNames.EXPAND_MORE_BTN}`
 };

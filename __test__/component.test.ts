@@ -55,9 +55,7 @@ test('expand button functionality of a node', () => {
   // Collapse child nodes
   (expandBtnEl as HTMLElement).click();
   expect(childrenContainerEl!.classList.contains(ClassNames.HIDE)).toBeTruthy();
-  expect(expandBtnEl!.querySelector('.material-icons')!.innerHTML.trim()).toBe(
-    'expand_more'
-  );
+  expect(expandBtnEl!.querySelector(Selectors.EXPAND_MORE_BTN)).not.toBeNull();
   expect(expandBtnCbSpy).toHaveBeenCalled();
   expect(expandBtnCbSpy).toHaveReturned();
   expect(expandBtnCbSpy).toHaveReturnedWith(
@@ -67,9 +65,7 @@ test('expand button functionality of a node', () => {
   // Expand child nodes
   (expandBtnEl as HTMLElement).click();
   expect(childrenContainerEl!.classList.contains(ClassNames.HIDE)).toBeFalsy();
-  expect(expandBtnEl!.querySelector('.material-icons')!.innerHTML.trim()).toBe(
-    'expand_less'
-  );
+  expect(expandBtnEl!.querySelector(Selectors.EXPAND_LESS_BTN)).not.toBeNull();
   expect(expandBtnCbSpy).toHaveBeenCalled();
   expect(expandBtnCbSpy).toHaveReturned();
   expect(expandBtnCbSpy).toHaveReturnedWith(
