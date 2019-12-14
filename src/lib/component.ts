@@ -77,26 +77,29 @@ export class ExpNodeComponent {
     expNodeComponent.id = id;
     expNodeComponent.classList.add(ClassNames.CONTAINER);
     expNodeComponent.innerHTML = `
-    <div class="row">
-      <div class="col s6 exp-node-first-lvl-col">
-        <div class="exp-node-shape-selection"></div>
+    <div class="exp-node-row">
+      <div class="exp-node-element">
         <div class="exp-node-shape ${Utils.getCssClassForAssignedType(
           this.node,
           this.types
         )}"></div>
+        <div class="exp-node-shape-selection"></div>
       </div>
-      <div class="col s6 exp-node-first-lvl-col">
-        <div class="z-depth-1 exp-node-actions">
-          <a class="btn-floating waves-effect waves-light exp-node-btn exp-node-delete-btn"><i class="exp-node-delete-btn-icon"></i></a>
-          <a class="btn-floating waves-effect waves-light exp-node-btn exp-node-edit-btn exp-node-hide"><i class="exp-node-edit-btn-icon"></i></a>
+      <div class="exp-node-element">
+        <div class="exp-node-actions">
+          <button type="button" class="exp-node-delete-btn"></button>
+          <button type="button" class="exp-node-edit-btn exp-node-hide"></button>
         </div>
-        <div class="z-depth-1 valign-wrapper exp-node-desc">
+        <div class="exp-node-description">
             ${description}
         </div>
       </div>
-      <div class="col s6 center-align exp-node-second-lvl-col exp-node-children-actions-wrapper">
+    </div>
+    <div class="exp-node-row">
+      <div class="exp-node-element exp-node-children-actions-wrapper"></div>
+      <div class="exp-node-element exp-node-children-wrapper">
+          <div class="exp-node-children"></div>
       </div>
-      <div class="col s6 exp-node-second-lvl-col exp-node-children"></div>
     </div>`;
 
     if (
@@ -136,9 +139,9 @@ export class ExpNodeComponent {
       Selectors.CHILDREN_ACTIONS_WRAPPER
     );
     if (childrenActionsContainerEl !== null) {
-      childrenActionsContainerEl.innerHTML = `<div class="z-depth-1 exp-node-children-actions">
-          <a class="btn-floating waves-effect waves-light exp-node-btn exp-node-expand-btn"><i class="exp-node-expand-less-btn-icon"></i></a>
-        </div>`;
+      childrenActionsContainerEl.innerHTML = `<div class="exp-node-children-actions">
+        <button type="button" class="exp-node-expand-btn exp-node-expand-less-btn"></button>
+      </div>`;
       this.registerExpandBtnClickListener(expNodeComponent);
     }
   }
@@ -181,11 +184,11 @@ export class ExpNodeComponent {
             ClassNames.HIDE
           )
         ) {
-          expandBtnEl.innerHTML =
-            '<i class="exp-node-expand-more-btn-icon"></i>';
+          expandBtnEl.classList.remove('exp-node-expand-less-btn');
+          expandBtnEl.classList.add('exp-node-expand-more-btn');
         } else {
-          expandBtnEl.innerHTML =
-            '<i class="exp-node-expand-less-btn-icon"></i>';
+          expandBtnEl.classList.remove('exp-node-expand-more-btn');
+          expandBtnEl.classList.add('exp-node-expand-less-btn');
         }
 
         if (Utils.checkIfObjectHasProperty(this.callbacks, 'expandBtnCb')) {
@@ -283,7 +286,7 @@ export class ExpNodeComponent {
     if (shapeEl != null && shapeSelectionEl != null) {
       shapeEl.addEventListener('click', () => {
         Utils.removeSelectionFromAllShapes();
-        shapeSelectionEl.classList.add('z-depth-1');
+        shapeSelectionEl.classList.add(ClassNames.SHAPE_SELECTION_ACTIVE);
         if (Utils.checkIfObjectHasProperty(this.callbacks, 'selectCb')) {
           const { selectCb } = this.callbacks!;
           if (Utils.isDefined(selectCb)) {

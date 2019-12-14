@@ -26,6 +26,7 @@ export declare const ClassNames: {
     EXPAND_BTN: string;
     HIDE: string;
     SHAPE_SELECTION: string;
+    SHAPE_SELECTION_ACTIVE: string;
     SHAPE: string;
     WRAPPER: string;
     EXPAND_LESS_BTN: string;

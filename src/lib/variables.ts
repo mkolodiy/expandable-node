@@ -31,10 +31,11 @@ export const ClassNames = {
   EXPAND_BTN: 'exp-node-expand-btn',
   HIDE: 'exp-node-hide',
   SHAPE_SELECTION: 'exp-node-shape-selection',
+  SHAPE_SELECTION_ACTIVE: 'exp-node-shape-selection-active',
   SHAPE: 'exp-node-shape',
   WRAPPER: 'exp-node-wrapper',
-  EXPAND_LESS_BTN: 'exp-node-expand-less-btn-icon',
-  EXPAND_MORE_BTN: 'exp-node-expand-more-btn-icon'
+  EXPAND_LESS_BTN: 'exp-node-expand-less-btn',
+  EXPAND_MORE_BTN: 'exp-node-expand-more-btn'
 };
 
 /**

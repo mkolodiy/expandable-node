@@ -196,7 +196,6 @@ Using the configuration above you will get the following output:
 ## Technology used to build this library
 
 - TypeScript Starter ([License](https://github.com/bitjson/typescript-starter/blob/master/LICENSE))
-- MaterializeCSS ([License](https://github.com/Dogfalo/materialize/blob/v1-dev/LICENSE))
 - Material design icons ([License](https://github.com/google/material-design-icons/blob/master/LICENSE))
 
 ## License

@@ -1,14 +1,68 @@
-@import '~materialize-css/dist/css/materialize.min.css';
+@mixin exp-node-btn-ripple() {
+  overflow: hidden;
+  position: relative;
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    margin-left: -20px;
+    margin-top: -20px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 100%;
+    transform: scale(0);
+  }
+
+  @keyframes exp-node-btn-ripple {
+    0% {
+      transform: scale(0);
+    }
+    20% {
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1);
+    }
+  }
+
+  &:not(:active):after {
+    animation: exp-node-btn-ripple 0.6s ease-out;
+  }
+
+  &:after {
+    visibility: hidden;
+  }
+
+  &:focus:after {
+    visibility: visible;
+  }
+}
+
+@mixin exp-node-btn-raised() {
+  box-shadow: 0px 0px 5px 1px rgba(143, 143, 143, 0.3);
+}
 
 @mixin exp-node-btn($url) {
-  height: 100%;
-  width: 100%;
+  height: 40px;
+  width: 40px;
+  padding: 6px;
+  margin: 5px;
+  cursor: pointer;
+  user-select: none;
+  border: 0;
+  border-radius: 50%;
+  outline: 0;
+  overflow: hidden;
+  background-color: #bfbfbf;
+  background-image: svg-load($url);
   background-size: auto 70%;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: svg-load($url);
-  padding: 10px;
-  cursor: pointer;
 }
 
 .exp-node-wrapper {
@@ -23,26 +77,20 @@
 
 .exp-node-container {
   width: 420px;
+  display: flex;
+  flex-direction: column;
+}
 
-  .row {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-  }
+.exp-node-row {
+  display: flex;
+  flex-direction: row;
+}
 
-  .row .col {
-    width: 200px;
-    padding: 0px;
-    margin: 5px;
-  }
-
-  .row .exp-node-first-lvl-col {
-    height: 200px;
-  }
-
-  .row .exp-node-second-lvl-col {
-    height: auto;
-  }
+.exp-node-element {
+  display: flex;
+  flex: 1;
+  margin: 5px;
+  flex-direction: column;
 }
 
 .exp-node-shape {
@@ -60,58 +108,75 @@
   height: 200px;
   width: 200px;
   position: absolute;
-  border-radius: 5px;
   pointer-events: none;
 }
 
+.exp-node-shape-selection-active {
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0px rgba(204, 204, 204, 1);
+}
+
 .exp-node-actions {
-  height: 50px;
+  width: fit-content;
   margin-bottom: 10px;
   border-radius: 5px;
-  padding: 5px;
-  display: inline-block;
+  box-shadow: 0 0 5px 0px rgba(204, 204, 204, 1);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-.exp-node-desc {
-  max-height: 140px;
-  width: 200px;
+.exp-node-description {
+  width: 100%;
   border-radius: 5px;
   padding: 5px;
+  box-shadow: 0 0 5px 0px rgba(204, 204, 204, 1);
 }
 
-.exp-node-btn {
-  i {
-    user-select: none;
-  }
+.exp-node-children-actions-wrapper {
+  height: 50px;
 }
 
 .exp-node-children-actions {
-  height: 50px;
+  width: fit-content;
   border-radius: 5px;
-  padding: 5px;
-  display: inline-block;
+  box-shadow: 0 0 5px 0px rgba(204, 204, 204, 1);
+  margin: auto;
+}
+
+.exp-node-children-wrapper {
+  width: 200px;
 }
 
 .exp-node-children {
-  padding-top: 50px !important;
+  width: auto;
+  padding-top: 50px;
+}
+
+.exp-node-delete-btn {
+  @include exp-node-btn('icons/baseline-delete-24px.svg');
+  @include exp-node-btn-raised();
+  @include exp-node-btn-ripple();
+}
+
+.exp-node-edit-btn {
+  @include exp-node-btn('icons/baseline-open_in_new-24px.svg');
+  @include exp-node-btn-raised();
+  @include exp-node-btn-ripple();
+}
+
+.exp-node-expand-less-btn {
+  @include exp-node-btn('icons/baseline-expand_less-24px.svg');
+  @include exp-node-btn-raised();
+  @include exp-node-btn-ripple();
+}
+
+.exp-node-expand-more-btn {
+  @include exp-node-btn('icons/baseline-expand_more-24px.svg');
+  @include exp-node-btn-raised();
+  @include exp-node-btn-ripple();
 }
 
 .exp-node-hide {
   display: none;
-}
-
-.exp-node-delete-btn-icon {
-  @include exp-node-btn('icons/baseline-delete-24px.svg');
-}
-
-.exp-node-edit-btn-icon {
-  @include exp-node-btn('icons/baseline-open_in_new-24px.svg');
-}
-
-.exp-node-expand-less-btn-icon {
-  @include exp-node-btn('icons/baseline-expand_less-24px.svg');
-}
-
-.exp-node-expand-more-btn-icon {
-  @include exp-node-btn('icons/baseline-expand_more-24px.svg');
 }

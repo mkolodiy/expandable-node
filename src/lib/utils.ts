@@ -1,5 +1,5 @@
 import { Node, NodeType } from './models';
-import { Errors, Selectors } from './variables';
+import { ClassNames, Errors, Selectors } from './variables';
 
 /**
  * Contains helper methods.
@@ -26,7 +26,7 @@ export class Utils {
     if (wrapperEl != null) {
       wrapperEl
         .querySelectorAll(Selectors.SHAPE_SELECTION)
-        .forEach(el => el.classList.remove('z-depth-1'));
+        .forEach(el => el.classList.remove(ClassNames.SHAPE_SELECTION_ACTIVE));
     } else {
       throw new Error(Errors.WRAPPER_NOT_FOUND);
     }
