@@ -88,7 +88,7 @@ ExpNode.create(options);
 Using the configuration above you will get the following output:
 
 <p align="center">
-  <img src="docs/basic-configuration.PNG" alt="Basic configuration" />
+  <img src="https://raw.githubusercontent.com/mkolodiy/expandable-node/master/docs/basic-configuration.PNG" alt="Basic configuration" />
 </p>
 
 ## Full configuration
