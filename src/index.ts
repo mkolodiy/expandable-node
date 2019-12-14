@@ -1,2 +1,3 @@
 import './assets/index.scss';
-export * from './lib/lib';
+import { ExpNode } from './lib/lib';
+export default ExpNode;
