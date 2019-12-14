@@ -44,7 +44,7 @@ describe('removeSelectionFromAllShapes', () => {
   const createSelectionEl = (): Element => {
     const selectionEl: Element = document.createElement('div');
     selectionEl.classList.add(ClassNames.SHAPE_SELECTION);
-    selectionEl.classList.add('z-depth-1');
+    selectionEl.classList.add(ClassNames.SHAPE_SELECTION_ACTIVE);
     return selectionEl;
   };
 });

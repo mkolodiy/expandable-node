@@ -14,7 +14,7 @@ test('node element should be added to the wrapper element', () => {
   expect(containerEl).not.toBeNull();
   expect(containerEl!.id).toBe('node01');
   const description = containerEl!
-    .querySelector('.exp-node-desc')!
+    .querySelector('.exp-node-description')!
     .innerHTML.trim();
   expect(description).toBe('Level 1 node.');
 });
@@ -55,7 +55,9 @@ test('expand button functionality of a node', () => {
   // Collapse child nodes
   (expandBtnEl as HTMLElement).click();
   expect(childrenContainerEl!.classList.contains(ClassNames.HIDE)).toBeTruthy();
-  expect(expandBtnEl!.querySelector(Selectors.EXPAND_MORE_BTN)).not.toBeNull();
+  expect(
+    expandBtnEl!.classList.contains(ClassNames.EXPAND_MORE_BTN)
+  ).toBeTruthy();
   expect(expandBtnCbSpy).toHaveBeenCalled();
   expect(expandBtnCbSpy).toHaveReturned();
   expect(expandBtnCbSpy).toHaveReturnedWith(
@@ -65,7 +67,9 @@ test('expand button functionality of a node', () => {
   // Expand child nodes
   (expandBtnEl as HTMLElement).click();
   expect(childrenContainerEl!.classList.contains(ClassNames.HIDE)).toBeFalsy();
-  expect(expandBtnEl!.querySelector(Selectors.EXPAND_LESS_BTN)).not.toBeNull();
+  expect(
+    expandBtnEl!.classList.contains(ClassNames.EXPAND_LESS_BTN)
+  ).toBeTruthy();
   expect(expandBtnCbSpy).toHaveBeenCalled();
   expect(expandBtnCbSpy).toHaveReturned();
   expect(expandBtnCbSpy).toHaveReturnedWith(
@@ -115,7 +119,9 @@ test('select functionality of a node', () => {
   expect(selectBtnCbSpy).toHaveReturnedWith(
     `Node clicked: ${options.nodes[0].id}`
   );
-  expect(shapeSelectionEl!.classList.contains('z-depth-1')).toBeTruthy();
+  expect(
+    shapeSelectionEl!.classList.contains(ClassNames.SHAPE_SELECTION_ACTIVE)
+  ).toBeTruthy();
 });
 
 test('delete button functionality of a node', () => {
