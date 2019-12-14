@@ -7,7 +7,7 @@ npm i expandable-node
 ```
 
 <p align="center">
-  <img src="docs/basic-configuration.PNG" alt="Basic configuration" />
+  <img src="https://raw.githubusercontent.com/mkolodiy/expandable-node/master/docs/basic-configuration.PNG" alt="Basic configuration" />
 </p>
 
 ## Usage
@@ -192,7 +192,7 @@ ExpNode.create(options);
 Using the configuration above you will get the following output:
 
 <p align="center">
-  <img src="docs/full-configuration.PNG" alt="Full configuration" />
+  <img src="https://raw.githubusercontent.com/mkolodiy/expandable-node/master/docs/full-configuration.PNG" alt="Full configuration" />
 </p>
 
 ## Technology used to build this library
