@@ -12,6 +12,8 @@ npm i expandable-node
 
 ## Usage
 
+API documentation: https://mkolodiy.github.io/expandable-node/
+
 ### Options
 
 Object containing values needed for creating a new node.
