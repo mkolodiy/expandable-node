@@ -4,6 +4,7 @@ test
 src/**.js
 .idea/*
 .rpt2_cache
+dist
 
 coverage
 .nyc_output
