@@ -1,6 +1,6 @@
 {
   "name": "expandable-node",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A library for creating a tree like node structure.",
   "main": "dist/js/expandable-node.umd.min.js",
   "module": "dist/js/expandable-node.es5.min.js",
