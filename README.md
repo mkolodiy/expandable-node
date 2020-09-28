@@ -12,6 +12,9 @@ npm i expandable-node
 
 ## Usage
 
+* Include provided CSS styles
+* Use JS API to create a new node
+
 API documentation: https://mkolodiy.github.io/expandable-node/
 
 ### Options
