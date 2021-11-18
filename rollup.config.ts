@@ -1,63 +1,39 @@
 // tslint:disable
-import commonjs from 'rollup-plugin-commonjs';
-import json from 'rollup-plugin-json';
-import resolve from 'rollup-plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
 import sourceMaps from 'rollup-plugin-sourcemaps';
 import { terser } from 'rollup-plugin-terser';
-import typescript from 'rollup-plugin-typescript2';
+import typescript from '@rollup/plugin-typescript';
 
-const pkg = require('./package.json');
-const license = require('rollup-plugin-license');
-
-const bannerText = `${pkg.name} ${pkg.version} ${pkg.license} | https://github.com/mkolodiy/expandable-node`;
+const baseOutput = {
+  name: 'expandable-node',
+  sourcemap: true
+};
 
 export default {
   input: 'src/index.ts',
   output: [
     {
-      file: pkg.main,
-      name: pkg.name,
-      format: 'umd',
-      sourcemap: true
+      ...baseOutput,
+      file: 'dist/esm/expandable-node.js',
+      format: 'es'
     },
     {
-      file: pkg.module,
-      name: pkg.name,
+      ...baseOutput,
+      file: 'dist/esm/expandable-node.min.js',
       format: 'es',
-      sourcemap: true
+      plugins: [terser({ module: true })]
+    },
+    {
+      ...baseOutput,
+      file: 'dist/umd/expandable-node.js',
+      format: 'umd'
+    },
+    {
+      ...baseOutput,
+      file: 'dist/umd/expandable-node.min.js',
+      format: 'umd',
+      plugins: [terser()]
     }
   ],
-  external: [],
-  watch: {
-    include: 'src/**'
-  },
-  plugins: [
-    json(),
-    typescript({
-      useTsconfigDeclarationDir: true,
-      objectHashIgnoreUnknownHack: true
-    }),
-    commonjs(),
-    resolve(),
-    postcss({
-      extract: `dist/css/${pkg.name}.min.css`,
-      minimize: true,
-      sourceMap: true,
-      plugins: [
-        require('postcss-inline-svg'),
-        require('postcss-banner')({
-          banner: bannerText,
-          important: true
-        })
-      ]
-    }),
-    terser({
-      include: [/^.+\.min\.js$/]
-    }),
-    sourceMaps(),
-    license({
-      banner: bannerText
-    })
-  ]
+  plugins: [typescript(), postcss(), sourceMaps()]
 };

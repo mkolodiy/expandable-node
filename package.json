@@ -2,9 +2,15 @@
   "name": "expandable-node",
   "version": "1.1.3",
   "description": "A library for creating a tree like node structure.",
-  "main": "dist/js/expandable-node.umd.min.js",
-  "module": "dist/js/expandable-node.es5.min.js",
-  "typings": "dist/types/expandable-node.d.ts",
+  "main": "dist/umd/expandable-node.js",
+  "module": "dist/esm/expandable-node.js",
+  "typings": "dist/expandable-node.d.ts",
+  "exports": {
+    ".": {
+      "default": "./dist/esm/expandable-node.min.js"
+    },
+    "./dist/": "./dist/"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/mkolodiy/expandable-node.git"
@@ -37,9 +43,6 @@
     "node": ">=8.9"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^21.0.1",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/plugin-typescript": "^8.3.0",
     "@types/jest": "^27.0.2",
     "@types/materialize-css": "^1.0.11",
@@ -74,7 +77,7 @@
   },
   "prettier": {
     "singleQuote": true,
-    "trailingComma" : "none"
+    "trailingComma": "none"
   },
   "jest": {
     "roots": [
