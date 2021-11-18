@@ -26,7 +26,9 @@ export class Utils {
     if (wrapperEl != null) {
       wrapperEl
         .querySelectorAll(Selectors.SHAPE_SELECTION)
-        .forEach(el => el.classList.remove(ClassNames.SHAPE_SELECTION_ACTIVE));
+        .forEach((el) =>
+          el.classList.remove(ClassNames.SHAPE_SELECTION_ACTIVE)
+        );
     } else {
       throw new Error(Errors.WRAPPER_NOT_FOUND);
     }
@@ -45,7 +47,7 @@ export class Utils {
     const { type } = node;
 
     if (type != null && this.arrayNotEmpty(types)) {
-      const nodeType = types.find(t => t.type === type);
+      const nodeType = types.find((t) => t.type === type);
       return nodeType != null ? nodeType.cssClass : '';
     }
 
@@ -77,10 +79,10 @@ export class Utils {
    * @param property Property that should be used for check.
    */
   public static checkIfObjectHasProperty(
-    object: {} = {},
+    object: any = {},
     property: string
   ): boolean {
-    return object.hasOwnProperty(property);
+    return Reflect.has(object, property);
   }
 
   /**

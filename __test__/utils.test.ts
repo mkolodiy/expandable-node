@@ -141,8 +141,8 @@ test('checkIfObjectHasProperty', () => {
 });
 
 test('isDefined', () => {
-  const test1: number = 123;
-  const test2: string = 'someTestString';
+  const test1 = 123;
+  const test2 = 'someTestString';
   const test3 = null;
   const test4 = undefined;
   const test5 = () => {

@@ -70,7 +70,7 @@ export class ExpNode {
       throw Error(Errors.NODES_ARRAY_NOT_FOUND);
     }
 
-    nodes.forEach(node =>
+    nodes.forEach((node) =>
       ExpNodeComponent.create(node, wrapperEl, callbacks, types)
     );
   }

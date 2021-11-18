@@ -180,10 +180,10 @@ const createOptions2 = (): Options => {
   return {
     container: 'someContainerId',
     callbacks: {
-      expandBtnCb: node => `Node clicked: ${node.id}`,
-      deleteBtnCb: node => `Node clicked: ${node.id}`,
-      editBtnCb: node => `Node clicked: ${node.id}`,
-      selectCb: node => `Node clicked: ${node.id}`
+      expandBtnCb: (node) => `Node clicked: ${node.id}`,
+      deleteBtnCb: (node) => `Node clicked: ${node.id}`,
+      editBtnCb: (node) => `Node clicked: ${node.id}`,
+      selectCb: (node) => `Node clicked: ${node.id}`
     },
     types: [
       {

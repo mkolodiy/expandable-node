@@ -153,7 +153,7 @@ export class ExpNodeComponent {
    */
   private renderChildNodes(expNodeComponent: Element): void {
     const { childNodes = [] } = this.node;
-    childNodes.forEach(childNode =>
+    childNodes.forEach((childNode) =>
       ExpNodeComponent.create(
         childNode,
         expNodeComponent,

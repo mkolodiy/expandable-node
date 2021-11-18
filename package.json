@@ -19,12 +19,11 @@
     "prebuild": "run-s clean fix",
     "build": "rollup -c rollup.config.ts",
     "fix": "run-s fix:*",
-    "fix:prettier": "prettier \"src/**/*.ts\" --write",
-    "fix:eslint": "eslint .",
-    "test": "run-s build test:*",
-    "test:lint": "tslint --project . && prettier \"src/**/*.ts\" --list-different",
+    "fix:prettier": "prettier \"src/**/*.ts\" \"__test__/**/*.ts\" --write",
+    "fix:eslint": "eslint --fix .",
+    "test": "run-s test:*",
+    "test:lint": "eslint . && prettier \"src/**/*.ts\" \"__test__/**/*.ts\" --list-different",
     "test:unit": "jest --no-cache",
-    "watch": "run-s clean build && run-p \"build -- -w\" \"test:unit -- --watch\"",
     "cov": "run-s build test:unit -- --coverage && opn coverage/index.html",
     "doc": "run-s doc:html && opn dist/docs/index.html",
     "doc:html": "typedoc src/ --exclude **/*.spec.ts --target ES6 --mode file --out dist/docs",
@@ -74,7 +73,8 @@
     }
   },
   "prettier": {
-    "singleQuote": true
+    "singleQuote": true,
+    "trailingComma" : "none"
   },
   "jest": {
     "roots": [
@@ -87,6 +87,7 @@
     "coverageReporters": [
       "json",
       "html"
-    ]
+    ],
+    "testEnvironment": "jsdom"
   }
 }
