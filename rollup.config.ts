@@ -1,8 +1,20 @@
-// tslint:disable
 import postcss from 'rollup-plugin-postcss';
 import sourceMaps from 'rollup-plugin-sourcemaps';
 import { terser } from 'rollup-plugin-terser';
-import typescript from '@rollup/plugin-typescript';
+import typescript from 'rollup-plugin-typescript2';
+
+function emitModulePackageFile() {
+  return {
+    generateBundle() {
+      this.emitFile({
+        fileName: 'package.json',
+        source: `{"type":"module"}`,
+        type: 'asset'
+      });
+    },
+    name: 'emit-module-package-file'
+  };
+}
 
 const baseOutput = {
   name: 'expandable-node',
@@ -15,7 +27,8 @@ export default {
     {
       ...baseOutput,
       file: 'dist/esm/expandable-node.js',
-      format: 'es'
+      format: 'es',
+      plugins: [emitModulePackageFile()]
     },
     {
       ...baseOutput,
@@ -35,5 +48,9 @@ export default {
       plugins: [terser()]
     }
   ],
-  plugins: [typescript(), postcss(), sourceMaps()]
+  plugins: [
+    typescript({ useTsconfigDeclarationDir: true }),
+    postcss({ plugins: [require('postcss-inline-svg')] }),
+    sourceMaps()
+  ]
 };

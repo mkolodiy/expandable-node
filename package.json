@@ -4,7 +4,7 @@
   "description": "A library for creating a tree like node structure.",
   "main": "dist/umd/expandable-node.js",
   "module": "dist/esm/expandable-node.js",
-  "typings": "dist/expandable-node.d.ts",
+  "typings": "dist/types/index.d.ts",
   "exports": {
     ".": {
       "default": "./dist/esm/expandable-node.min.js"
@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "prebuild": "run-s clean fix",
-    "build": "rollup -c rollup.config.ts",
+    "build": "rollup --config rollup.config.ts",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.ts\" \"__test__/**/*.ts\" --write",
     "fix:eslint": "eslint --fix .",
@@ -43,7 +43,6 @@
     "node": ">=8.9"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^8.3.0",
     "@types/jest": "^27.0.2",
     "@types/materialize-css": "^1.0.11",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
@@ -64,6 +63,7 @@
     "rollup-plugin-postcss": "^4.0.1",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.31.0",
     "standard-version": "^9.3.2",
     "trash-cli": "^4.0.0",
     "ts-jest": "^27.0.7",
