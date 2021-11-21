@@ -16,3 +16,4 @@ coverage
 *.log
 .editorconfig
 rollup.config.ts
+.eslintrc.json

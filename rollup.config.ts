@@ -16,35 +16,32 @@ function emitModulePackageFile() {
   };
 }
 
-const baseOutput = {
-  name: 'expandable-node',
-  sourcemap: true
-};
-
 export default {
   input: 'src/index.ts',
   output: [
     {
-      ...baseOutput,
       file: 'dist/esm/expandable-node.js',
       format: 'es',
+      sourcemap: true,
       plugins: [emitModulePackageFile()]
     },
     {
-      ...baseOutput,
       file: 'dist/esm/expandable-node.min.js',
       format: 'es',
+      sourcemap: true,
       plugins: [terser({ module: true })]
     },
     {
-      ...baseOutput,
       file: 'dist/umd/expandable-node.js',
-      format: 'umd'
+      format: 'umd',
+      sourcemap: true,
+      name: 'expandableNode'
     },
     {
-      ...baseOutput,
       file: 'dist/umd/expandable-node.min.js',
       format: 'umd',
+      name: 'expandableNode',
+      sourcemap: true,
       plugins: [terser()]
     }
   ],
