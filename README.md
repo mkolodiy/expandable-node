@@ -63,7 +63,7 @@ Array containing node objects that should be displayed in the provided container
 Following code snippet shows a simple configuration:
 
 ```javascript
-import { ExpNode } from 'expandable-node';
+import ExpNode from 'expandable-node';
 
 const options = {
   container: 'container',
@@ -111,7 +111,7 @@ Following code snippets shows a full configuration:
 ```
 
 ```javascript
-import { ExpNode } from 'expandable-node';
+import ExpNode from 'expandable-node';
 
 const editBtnCb = function(node) {
   console.log('editBtnCb');
