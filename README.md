@@ -1,5 +1,8 @@
 # expandable-node
 
+> [!IMPORTANT]
+> This repository is archived and is not being maintained.
+
 A library for creating a tree like node structure.
 
 ```
